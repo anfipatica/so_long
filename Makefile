@@ -12,7 +12,12 @@ RM = rm -rf
 
 OBJS = $(OBJS_DIR)/main.o \
 		$(OBJS_DIR)/get_next_line.o \
-		$(OBJS_DIR)/get_next_line_utils.o
+		$(OBJS_DIR)/get_next_line_utils.o \
+		$(OBJS_DIR)/string_to_matrix.o \
+		$(OBJS_DIR)/validation_utils.o \
+		$(OBJS_DIR)/validate_map.o \
+		$(OBJS_DIR)/flood_fill.o \
+		$(OBJS_DIR)/utils.o
 
 .PHONY = clean all fclean re
 
