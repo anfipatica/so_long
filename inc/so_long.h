@@ -36,6 +36,7 @@ typedef struct s_data
 	void	*win_ptr;
 }				t_data;
 
+
 typedef struct s_map
 {
 	int		o_count;
@@ -83,7 +84,7 @@ void	validate_map(t_map *map);
 
 //flood_fill.c
 void	pre_flood_fill(t_map *map);
-void	flood_fill(t_map *map, int y, int x, int *tiles);
+void	flood_fill(t_map *map, int y, int x, int i);
 //utils.c
 void	malloc_failed(t_map *map);
 

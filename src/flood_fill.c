@@ -42,22 +42,23 @@ void	print_ff_matrix(t_map map)
 		}
 		printf("\n");
 	}
+	printf("\n-----------------------------\n");
 }
 
 void	pre_flood_fill(t_map *map)
 {
-	int	tiles[5];
 	map->ff_map = create_ff_matrix(map->col_num, map->row_num);
 	if (map->ff_map == 0)
 		malloc_failed(map);
 	print_ff_matrix(*map);
 	printf("%d, %d\n", map->p_pos[Y], map->p_pos[X]);
 	map->ff_map[map->p_pos[Y]][map->p_pos[X]] = 1;
-	flood_fill(map, map->p_pos[Y], map->p_pos[X], tiles);
+	flood_fill(map, map->p_pos[Y], map->p_pos[X], 2);
 }
 
 int	check_tile(t_map *map, int y, int x)
 {
+	printf("map = %c, ff_map = %d, y = %d, x = %d\n", map->map[y][x], map->ff_map[y][x], y, x);
 	if (map->map[y][x] != '1' && map->ff_map[y][x] == 0)
 	{
 		return (1);
@@ -66,75 +67,56 @@ int	check_tile(t_map *map, int y, int x)
 		return (0);
 }
 
-int	change_tile(t_map *map, int y, int x, int *tiles, int i)
+int	change_tile(t_map *map, int y, int x, int *tiles)
 {
-	if (tiles[0] == 1)
-		map->ff_map[y-1][x] = i;
-	if (tiles[1] == 1)
-		map->ff_map[y+1][x] = i;
-	if (tiles[2] == 1)
-		map->ff_map[y][x-1] = i;
-	if (tiles[3] == 1)
-		map->ff_map[y][x+1] = i;
-}
-void	flood_fill(t_map *map, int y, int x, int *tiles)
-{
-	static int i;
+	int	changed;
 
-	if (!i)
-		i = 2;
-	
+	changed = 0;
+	if (tiles[0] == 1)
+	{
+		map->ff_map[y-1][x] = map->ff_map[y][x] + 1;
+		changed++;
+	}
+	if (tiles[1] == 1)
+	{
+		map->ff_map[y+1][x] = map->ff_map[y][x] + 1;
+		changed++;
+	}
+	if (tiles[2] == 1)
+	{
+		map->ff_map[y][x-1] = map->ff_map[y][x] + 1;
+		changed++;
+	}
+	if (tiles[3] == 1)
+	{
+		map->ff_map[y][x+1] = map->ff_map[y][x] + 1;
+		changed++;
+	}
+	return (changed);
+}
+void	flood_fill(t_map *map, int y, int x, int i)
+{
+	int	tiles[5];
+
 	tiles[0] = check_tile(map, y - 1, x);
 	tiles[1] = check_tile(map, y + 1, x);
 	tiles[2] = check_tile(map, y, x - 1);
 	tiles[3] = check_tile(map, y, x + 1);
 
-	change_tile(map, y, x, tiles, i);
-	print_ff_matrix(*map);
-}
-
-
-/*void	flood_fill(t_map *map)
-{
-	int	y = map->p_pos[X];
-	int x = map->p_pos[Y];
-	int i = 0;
-
-	map->ff_map = create_ff_matrix(map->col_num, map->row_num);
-	if (map->ff_map == 0)
-		malloc_failed(map);
-	print_ff_matrix(*map);
-	map->ff_map[x][y] = ++i;
-	printf("i = %d\n", i);
-	for (int j = 0; j < 120; j++)
-	{
+	if (change_tile(map, y, x, tiles) != 0)
 		i++;
-		printf("%c, %c, %c, %c, %d\n", map->map[y - 1][x], map->map[y + 1][x], map->map[y][x - 1], map->map[y][x + 1], i);
-		if (map->map[y - 1][x] != '1' && map->ff_map[y - 1][x] == 0)
-		{
-			printf("1\n");
-			map->ff_map[y - 1][x] = i;
-			y--;
-		}
-		else if (map->map[y + 1][x] != '1' && map->ff_map[y + 1][x] == 0)
-		{
-			map->ff_map[y + 1][x] = i;
-			y++;
-		}
-		else if (map->map[y][x - 1] != '1' && map->ff_map[y][x - 1] == 0)
-		{
-			map->ff_map[y][x - 1] = i;
-			x--;
-		}
-		else if (map->map[y][x + 1] != '1' && map->ff_map[y][x + 1] == 0)
-		{
-			map->ff_map[y][x + 1] = i;
-			x++;
-		}
-		else
-			break;
-		print_ff_matrix(*map);
-	}
-	printf("\n\n");
 	print_ff_matrix(*map);
-}*/
+	printf("i = %d, tiles[0]\n", i);
+	if (tiles[0] == 1)
+		flood_fill(map, y - 1, x, i);
+	printf("i = %d, tiles[1]\n", i);
+	if (tiles[1] == 1)
+		flood_fill(map, y + 1, x, i);
+	printf("i = %d, tiles[2]\n", i);
+	if (tiles[2] == 1)
+		flood_fill(map, y, x - 1, i);
+	printf("i = %d, tiles[3]\n", i);
+	if (tiles[3] == 1)
+		flood_fill(map, y, x + 1, i);
+	printf("i = %d, END\n", i);
+}
