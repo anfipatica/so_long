@@ -10,8 +10,6 @@
 # include <fcntl.h> //macros for open.
 # include "../src/utils/libft/libft.h"
 
-# define WIDTH 1000
-# define HEIGHT 700
 # define TILE_PIXEL 64
 # define BUFFER_SIZE 30
 
@@ -28,19 +26,30 @@
 # define NUMBER_STARTS 7
 # define NO_OBJECT 8
 # define WRONG_SHAPE 9
+# define NON_REACHABLE_EXIT 10
+# define NON_REACHABLE_COLLECTIBLE 11
 
+//Types of errors when creating a window.
+# define DISPLAY 0
+# define WINDOW 1
+# define IMAGE 2
 
-typedef struct s_data
-{
-	void	*mlx_ptr;
-	void	*win_ptr;
-}				t_data;
-
-
+/**
+ * *_count = counters used for the map validation.
+ * map_fd = here we save the map fd that open() returns.
+ * map_line = We first read the map as an unique line.
+ * map_line_buf = a buffer for the line, used in gnl.
+ * map = Once the map is saved in a line, we split it into a matrix in map.
+ * ff_map = an int matrix used by the flood_fill algorithm to check if the exit is reachable.
+	It has the same dimensions as map and will act as an "underlayer" that will save the info of the possible paths.
+	For more information, read the info related to the flood_fill() function inside flood_fill.c.
+ * p_pos[3] = An int array that will hold the Y and X position of P.
+ * col_num = Will hold the number of columns of the map matrix.
+ * row_num = Will hold the number of rows of the map matrix.
+ * 
+*/
 typedef struct s_map
 {
-	int		o_count;
-	int		i_count;
 	int		c_count;
 	int		e_count;
 	int		p_count;
@@ -50,11 +59,32 @@ typedef struct s_map
 	char	**map;
 	int		**ff_map;
 	int		p_pos[3];
-	int		e_pos[3];
 	int		col_num;
 	int		row_num;
-	int		tiles[5];
 }				t_map;
+
+typedef struct s_img
+{
+	void	*floor;
+	void	*wall;
+	void	*collectible;
+	void	*character;
+	void	*exit;
+}				t_img;
+typedef struct s_player
+{
+	int		pos[3];
+
+}			player;
+
+typedef struct s_data
+{
+	void	*mlx_ptr;
+	void	*win_ptr;
+	t_map	*map;
+	t_img	*imgs;
+}				t_data;
+
 
 //get_next_line.c
 char	*get_next_line(int fd);
@@ -68,25 +98,50 @@ void	ft_free(char **str);
 char	*gnl_strdup(char *s1, int n);
 
 //main.c
-void	invalid_map(t_map *map, int error);
-void	free_map(t_map *map);
+void	init_window(t_data *data);
+
+//read_map.c
+//	We read the map as one line, then we split it into a matrix and do map validations.
+
+void	read_map(t_data *data, char *map_name);
+void	create_map(t_map *map);
+void	trim_line(t_map *map);
+
+//validate_map.c
+//	Functions to check the validity of the map.
+
+void	validate_map(t_map *map);
+void	validate_row(t_map *map, int row);
+void	check_char(t_map *map, int i, int row);
+void	last_check(t_map *map);
+
+
 
 // validation_utils.c
 int		count_char(const char *str, const char c);
+void	invalid_map(t_map *map, int error);
 
-
-//string_to_matrix.c
-void	trim_line(t_map *map);
-void	create_map(t_map *map);
-
-//validate_map.c
-void	validate_map(t_map *map);
 
 //flood_fill.c
+int		check_tile(t_map *map, int y, int x);
+int		change_tile(t_map *map, int y, int x, int *tiles);
 void	pre_flood_fill(t_map *map);
 void	flood_fill(t_map *map, int y, int x, int i);
+
+
+//flood_fill_utils.c
+void	free_matrix_f_malloc(int **matrix, int i);
+void	print_ff_matrix(t_map map);
+int		**create_ff_matrix(int width, int height);
+
+
 //utils.c
 void	malloc_failed(t_map *map);
+t_map	init_map(void);
+void	free_map(t_map *map);
+
+//draw_map.c
+void	draw_map(t_map *map);
 
 
 

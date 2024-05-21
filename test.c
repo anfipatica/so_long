@@ -1,16 +1,4 @@
-#include "minilibx-linux/mlx.h"
-#include <stdlib.h>
-#include <stdio.h>
-#include <unistd.h>
-#include <X11/X.h>
-#include <X11/keysym.h>
-
-#define WIDTH 700
-#define HEIGHT 300
-#define MALLOC_ERROR 1
-#define TILE_PIXEL 64
-
-
+#include "./inc/so_long.h"
 
 void	end_program(void *mlx)
 {

@@ -1,5 +1,24 @@
 #include "../inc/so_long.h"
 
+t_map	init_map(void)
+{
+	t_map	map;
+
+	//map = ft_calloc(1, sizeof(t_map));
+	//if (!map)
+	//	exit(1);
+	map.c_count = 0;
+	map.e_count = 0;
+	map.p_count = 0;
+	map.map_fd = 0;
+	map.map_line = NULL;
+	map.map_line_buf = "";
+	map.row_num = 0;
+	map.col_num = 0;
+	map.ff_map = NULL;
+	return (map);
+}
+
 void	free_map(t_map *map)
 {
 	int	i;
