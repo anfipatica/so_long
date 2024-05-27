@@ -5,11 +5,11 @@
  * that the cell on the ff_map corresponding to the E position on the map, has any number aside
  * from 0 asigned to it. If so, the exit is reachable and the map is valid.
 */
-void	last_check(t_map *map)
+void	validate_path(t_map *map)
 {
-	if (map->e_count != 0)
+	if (map->e_count != map->accesible_e)
 		invalid_map(map, NON_REACHABLE_EXIT);
-	if (map->c_count != 0)
+	if (map->c_count != map->accesible_c)
 		invalid_map(map, NON_REACHABLE_COLLECTIBLE);
 }
 

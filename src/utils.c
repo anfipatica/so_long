@@ -9,13 +9,14 @@ t_map	init_map(void)
 	//	exit(1);
 	map.c_count = 0;
 	map.e_count = 0;
+	map.accesible_c = 0;
+	map.accesible_e = 0;
 	map.p_count = 0;
 	map.map_fd = 0;
 	map.map_line = NULL;
 	map.map_line_buf = "";
 	map.row_num = 0;
 	map.col_num = 0;
-	map.ff_map = NULL;
 	return (map);
 }
 

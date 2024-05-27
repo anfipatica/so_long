@@ -43,9 +43,9 @@ void	flood_fill(t_map *map, int y, int x, int i)
 	int	tiles[5];
 
 	if (map->map[y][x] == 'C')
-		map->c_count--;
+		map->accesible_c++;
 	if (map->map[y][x] == 'E')
-		map->e_count--;
+		map->accesible_e++;
 	tiles[0] = check_tile(map, y - 1, x);
 	tiles[1] = check_tile(map, y + 1, x);
 	tiles[2] = check_tile(map, y, x - 1);
@@ -73,5 +73,5 @@ void	pre_flood_fill(t_map *map)
 	map->ff_map[map->p_pos[Y]][map->p_pos[X]] = 1;
 	flood_fill(map, map->p_pos[Y], map->p_pos[X], 2);
 	print_ff_matrix(*map);
-	last_check(map);
+	validate_path(map);
 }

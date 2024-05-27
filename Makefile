@@ -19,6 +19,9 @@ OBJS = $(OBJS_DIR)/main.o \
 		$(OBJS_DIR)/flood_fill.o \
 		$(OBJS_DIR)/flood_fill_utils.o \
 		$(OBJS_DIR)/draw_map.o \
+		$(OBJS_DIR)/draw_map_utils.o \
+		$(OBJS_DIR)/movements.o \
+		$(OBJS_DIR)/drawing_functions.o \
 		$(OBJS_DIR)/utils.o
 
 .PHONY = clean all fclean re

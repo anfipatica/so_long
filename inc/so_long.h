@@ -53,6 +53,8 @@ typedef struct s_map
 	int		c_count;
 	int		e_count;
 	int		p_count;
+	int		accesible_c;
+	int		accesible_e;
 	int		map_fd;
 	char	*map_line;
 	char	*map_line_buf;
@@ -63,14 +65,28 @@ typedef struct s_map
 	int		row_num;
 }				t_map;
 
+
 typedef struct s_img
 {
-	void	*floor;
-	void	*wall;
-	void	*collectible;
-	void	*character;
-	void	*exit;
+	void	*img_ptr;
+	char	*addr;
+	int		height;
+	int		width;
+	int		bpp;
+	int		endian;
+	int		line_len;
 }				t_img;
+
+typedef struct s_item
+{
+	t_img	*floor;
+	t_img	*wall;
+	t_img	*collectible;
+	t_img	*character;
+	t_img	*exit;
+}				t_item;
+
+
 typedef struct s_player
 {
 	int		pos[3];
@@ -82,7 +98,11 @@ typedef struct s_data
 	void	*mlx_ptr;
 	void	*win_ptr;
 	t_map	*map;
-	t_img	*imgs;
+	t_item	*items;
+	t_img	*layer;
+	int		bits_per_pixel;
+	int		line_length;
+	int		endian;
 }				t_data;
 
 
@@ -113,7 +133,7 @@ void	trim_line(t_map *map);
 void	validate_map(t_map *map);
 void	validate_row(t_map *map, int row);
 void	check_char(t_map *map, int i, int row);
-void	last_check(t_map *map);
+void	validate_path(t_map *map);
 
 
 
@@ -142,7 +162,33 @@ void	free_map(t_map *map);
 
 //draw_map.c
 void	draw_map(t_map *map);
+void	initializa_draw(t_data *data);
+int	handle_input(int keysym, t_data *data);
+void	move_character(t_data *data, int x, int y, int key);
 
 
+//draw_map_utils.c
+
+void	init_window(t_data *data);
+void	add_imgs_util(t_data *data, t_img *img, char *path);
+void	add_imgs(t_data *data);
+void	destroy_element(int type, t_data *data, void *element);
+int		free_data(t_data *data);
+
+//drawing_functions.c
+
+void		put_pixel_img(t_img *img, int x, int y, unsigned int color);
+unsigned int	get_pixel_img(t_img img, int x, int y);
+void		draw_tile(t_data *data, t_img *img, int row, int col);
+void		merge_tile(t_data *data, t_img *overlap, int row, int col);
+
+
+
+//movements.c
+void	move_up(t_data *data, int x, int y);
+void	move_down(t_data *data, int x, int y);
+void	move_left(t_data *data, int x, int y);
+void	move_right(t_data *data, int x, int y);
+void	check_changes(t_data *data, t_map *map, int p_x, int p_y);
 
 #endif
