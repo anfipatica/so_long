@@ -27,10 +27,8 @@ void	print_ff_matrix(t_map map)
 int		**create_ff_matrix(int width, int height)
 {
 	int		i;
-	int		j;
 
 	i = -1;
-	j = -1;
 	int		**matrix;
 	matrix = ft_calloc(height, sizeof(int *));
 	printf("with = %d, height = %d\n", width, height);

@@ -11,6 +11,8 @@ void	validate_path(t_map *map)
 		invalid_map(map, NON_REACHABLE_EXIT);
 	if (map->c_count != map->accesible_c)
 		invalid_map(map, NON_REACHABLE_COLLECTIBLE);
+	if (map->f_count != map->accesible_f)
+		invalid_map(map, NON_REACHABLE_FOE);
 }
 
 /**
@@ -27,6 +29,8 @@ void	check_char(t_map *map, int i, int row)
 		map->c_count++;
 	else if (map->map[row][i] == 'E')
 		map->e_count++;
+	else if (map->map[row][i] == 'F')
+		map->f_count++;
 	else if (map->map[row][i] == 'P')
 	{
 		map->p_count++;

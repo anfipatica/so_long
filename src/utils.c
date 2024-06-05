@@ -4,13 +4,12 @@ t_map	init_map(void)
 {
 	t_map	map;
 
-	//map = ft_calloc(1, sizeof(t_map));
-	//if (!map)
-	//	exit(1);
 	map.c_count = 0;
 	map.e_count = 0;
+	map.f_count = 0;
 	map.accesible_c = 0;
 	map.accesible_e = 0;
+	map.accesible_f = 0;
 	map.p_count = 0;
 	map.map_fd = 0;
 	map.map_line = NULL;

@@ -1,20 +1,41 @@
 #include "../inc/so_long.h"
+void *calloc_or_free(t_data *data, int n, int size)
+{
+	void *item;
 
+	item = ft_calloc(n, size);
+	if (!item)
+		free_data(data);
+	else
+		return (item);
+	return (NULL);
+}
+
+
+void	init_items(t_data *data)
+{
+	int i;
+
+	i = -1;
+	data->layer = calloc_or_free(data, 1, sizeof(t_img));
+	data->items = calloc_or_free(data, 1, sizeof(t_item));
+	data->items->floor = calloc_or_free(data, 1, sizeof(t_img));
+	while (++i < 4)
+		data->items->character[i] = calloc_or_free(data, 1, sizeof(t_img));
+	i = -1;
+	while (++i < 2)
+	{
+		data->items->collectible[i] = calloc_or_free(data, 1, sizeof(t_img));
+		data->items->foe[i] = calloc_or_free(data, 1, sizeof(t_img));
+	}
+	data->items->wall = calloc_or_free(data, 1, sizeof(t_img));
+	data->items->exit = calloc_or_free(data, 1, sizeof(t_img));
+}
 void	init_window(t_data *data)
 {
 	int	width;
 	int	height;
-
-// ***AÑADIR FALLOS DE MALLOC
-	data->layer = ft_calloc(1, sizeof(t_img));
-	data->items = ft_calloc(1, sizeof(t_item));
-
-	data->items->floor = ft_calloc(1, sizeof(t_img));
-	data->items->character = ft_calloc(1, sizeof(t_img));
-	data->items->wall = ft_calloc(1, sizeof(t_img));
-	data->items->collectible = ft_calloc(1, sizeof(t_img));
-	data->items->exit = ft_calloc(1, sizeof(t_img));
-
+	init_items(data);
 	width = data->map->col_num * TILE_PIXEL;
 	height = data->map->row_num * TILE_PIXEL;
 	data->mlx_ptr = mlx_init();
@@ -25,6 +46,7 @@ void	init_window(t_data *data)
 		free_data(data);
 	data->layer->img_ptr = mlx_new_image(data->mlx_ptr, width, height);
 	data->layer->addr = mlx_get_data_addr(data->layer->img_ptr, &data->layer->bpp, &data->layer->line_len, &data->endian);
+	data->sprite_state = 0;
 	add_imgs(data);
 }
 
@@ -41,16 +63,29 @@ void	add_imgs_util(t_data *data, t_img *img, char *path)
 
 void	add_imgs(t_data *data)
 {
+	printf("Llegamos a add_imgs()\n");
+	add_imgs_util(data, data->items->character[0], "./images/haruspex_front.xpm");
+
 	add_imgs_util(data, data->items->floor, "./images/floor.xpm");
-	add_imgs_util(data, data->items->character, "./images/haruspex_front.xpm");
+	printf("ñejejeje\n");
+	add_imgs_util(data, data->items->character[1], "./images/haruspex_left.xpm");
+	add_imgs_util(data, data->items->character[2], "./images/haruspex_back.xpm");
+	add_imgs_util(data, data->items->character[3], "./images/haruspex_right.xpm");
 	add_imgs_util(data, data->items->wall, "./images/wall.xpm");
 	add_imgs_util(data, data->items->exit, "./images/exit.xpm");
-	add_imgs_util(data, data->items->collectible, "./images/collectible.xpm");
-
+	add_imgs_util(data, data->items->collectible[0], "./images/collectible.xpm");
+	add_imgs_util(data, data->items->collectible[1], "./images/haruspex_right.xpm");
+	printf("foe0!!\n");
+	add_imgs_util(data, data->items->foe[0], "./images/plague0.xpm");
+	add_imgs_util(data, data->items->foe[1], "./images/plague1.xpm");
+	printf("foe01!\n");
 }
 
 void	destroy_element(int type, t_data *data, void *element)
 {
+	t_img *img_element;
+
+	img_element = NULL;
 	if (type == DISPLAY)
 	{
 		mlx_destroy_display(data->mlx_ptr);
@@ -60,42 +95,36 @@ void	destroy_element(int type, t_data *data, void *element)
 		mlx_destroy_window(data->mlx_ptr, element);
 	else if (type == IMAGE)
 	{
-		mlx_destroy_image(data->mlx_ptr, element);
+		img_element = element;
+		mlx_destroy_image(data->mlx_ptr, img_element->img_ptr);
+		free(element);
 	}
 }
 
 int	free_data(t_data *data)
 {
+	int i;
+
+	i = -1;
 	if (data->items && data->items->floor)
+		destroy_element(IMAGE, data, data->items->floor);
+	while (++i < 4)
 	{
-		destroy_element(IMAGE, data, data->items->floor->img_ptr);
-		free(data->items->floor);
+		if (data->items && data->items->character[i])
+			destroy_element(IMAGE, data, data->items->character[i]);
 	}
-	if (data->items && data->items->character)
+	i = -1;
+	while (++i < 2)
 	{
-		destroy_element(IMAGE, data, data->items->character->img_ptr);
-		free(data->items->character);
+		if (data->items && data->items->collectible[i])
+			destroy_element(IMAGE, data, data->items->collectible[i]);
 	}
 	if (data->items && data->items->wall)
-	{
-		destroy_element(IMAGE, data, data->items->wall->img_ptr);
-		free(data->items->wall);
-	}
+		destroy_element(IMAGE, data, data->items->wall);
 	if (data->items && data->items->exit)
-	{
-		destroy_element(IMAGE, data, data->items->exit->img_ptr);
-		free(data->items->exit);
-	}
-	if (data->items && data->items->collectible)
-	{
-		destroy_element(IMAGE, data, data->items->collectible->img_ptr);
-		free(data->items->collectible);
-	}
+		destroy_element(IMAGE, data, data->items->exit);
 	if (data->layer)
-	{
-		destroy_element(IMAGE, data, data->layer->img_ptr);
-		free(data->layer);
-	}
+		destroy_element(IMAGE, data, data->layer);
 	if (data->items)
 		free(data->items);
 	if (data->win_ptr)

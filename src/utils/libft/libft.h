@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ymunoz-m <ymunoz-m@student.42.fr>          +#+  +:+       +#+        */
+/*   By: anfi <anfi@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/13 17:57:52 by ymunoz-m          #+#    #+#             */
-/*   Updated: 2024/04/26 16:02:32 by ymunoz-m         ###   ########.fr       */
+/*   Updated: 2024/06/04 20:08:53 by anfi             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ extern int		ft_isdigit(int c);
 extern int		ft_isalnum(int c);
 extern int		ft_isascii(int c);
 extern int		ft_isprint(int c);
-unsigned long	ft_strlen(const char string[]);
+int				ft_strlen(const char string[]);
 void			*ft_memset(void	*str, int c, size_t n);
 void			ft_bzero(void *string, size_t n);
 void			*ft_memcpy(void *dest, const void *src, size_t n);

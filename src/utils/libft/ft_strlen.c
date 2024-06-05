@@ -6,13 +6,13 @@
 /*   By: anfi <anfi@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/13 18:25:53 by ymunoz-m          #+#    #+#             */
-/*   Updated: 2024/05/06 22:31:05 by anfi             ###   ########.fr       */
+/*   Updated: 2024/06/04 20:08:36 by anfi             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-size_t	ft_strlen(const char *string)
+int	ft_strlen(const char *string)
 {
 	int	i;
 	

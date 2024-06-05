@@ -5,7 +5,7 @@ OBJS_DIR = ./obj
 SRC_DIR = ./src
 LIBFT = $(SRC_DIR)/utils/libft/libft.a
 CC = gcc
-CFLAGS = -L$(INC_DIR)/minilibx-linux -lmlx -lXext -lX11 -I$(INC_DIR)
+CFLAGS = -Wall -Werror -Wextra -L$(INC_DIR)/minilibx-linux -lmlx -lXext -lX11 -I$(INC_DIR)
 # Faltan: -Wall -Werror -Wextra 
 
 RM = rm -rf
@@ -22,6 +22,7 @@ OBJS = $(OBJS_DIR)/main.o \
 		$(OBJS_DIR)/draw_map_utils.o \
 		$(OBJS_DIR)/movements.o \
 		$(OBJS_DIR)/drawing_functions.o \
+		$(OBJS_DIR)/foe_movement.o \
 		$(OBJS_DIR)/utils.o
 
 .PHONY = clean all fclean re

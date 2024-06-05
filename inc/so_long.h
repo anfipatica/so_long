@@ -10,6 +10,7 @@
 # include <fcntl.h> //macros for open.
 # include "../src/utils/libft/libft.h"
 
+//TILE_PIXEL = How many pixels is a tile.
 # define TILE_PIXEL 64
 # define BUFFER_SIZE 30
 
@@ -18,21 +19,35 @@
 # define X 1
 
 //Map validations defines:
-# define EMPTY_LINE 2
-# define DIFFERENT_LENGTHS 3
-# define INVALID_WALLS 4
-# define INVALID_CHAR 5
-# define NUMBER_EXITS 6
-# define NUMBER_STARTS 7
-# define NO_OBJECT 8
-# define WRONG_SHAPE 9
-# define NON_REACHABLE_EXIT 10
-# define NON_REACHABLE_COLLECTIBLE 11
+# define EMPTY_LINE 0
+# define DIFFERENT_LENGTHS 1
+# define INVALID_WALLS 2
+# define INVALID_CHAR 3
+# define NUMBER_EXITS 4
+# define NUMBER_STARTS 5
+# define NO_OBJECT 6
+# define WRONG_SHAPE 7
+# define NON_REACHABLE_EXIT 8
+# define NON_REACHABLE_COLLECTIBLE 9
+# define NON_REACHABLE_FOE 10
 
 //Types of errors when creating a window.
 # define DISPLAY 0
 # define WINDOW 1
 # define IMAGE 2
+
+//movements for the foes.
+# define NONE 0
+# define UP 1
+# define DOWN 2
+# define LEFT 3
+# define RIGHT 4
+
+typedef enum s_boolean
+{
+	false = 0,
+	true = 1
+}		t_bool;
 
 /**
  * *_count = counters used for the map validation.
@@ -53,8 +68,10 @@ typedef struct s_map
 	int		c_count;
 	int		e_count;
 	int		p_count;
+	int		f_count;
 	int		accesible_c;
 	int		accesible_e;
+	int		accesible_f;
 	int		map_fd;
 	char	*map_line;
 	char	*map_line_buf;
@@ -75,23 +92,21 @@ typedef struct s_img
 	int		bpp;
 	int		endian;
 	int		line_len;
+	int		mov;
+
 }				t_img;
 
 typedef struct s_item
 {
 	t_img	*floor;
 	t_img	*wall;
-	t_img	*collectible;
-	t_img	*character;
+	t_img	*collectible[2];
+	t_img	*character[4];
+	t_img	*foe[2];
 	t_img	*exit;
 }				t_item;
 
 
-typedef struct s_player
-{
-	int		pos[3];
-
-}			player;
 
 typedef struct s_data
 {
@@ -103,6 +118,8 @@ typedef struct s_data
 	int		bits_per_pixel;
 	int		line_length;
 	int		endian;
+	int		movements;
+	int		sprite_state;
 }				t_data;
 
 
@@ -123,7 +140,7 @@ void	init_window(t_data *data);
 //read_map.c
 //	We read the map as one line, then we split it into a matrix and do map validations.
 
-void	read_map(t_data *data, char *map_name);
+t_map	read_map(char *map_name);
 void	create_map(t_map *map);
 void	trim_line(t_map *map);
 
@@ -163,12 +180,12 @@ void	free_map(t_map *map);
 //draw_map.c
 void	draw_map(t_map *map);
 void	initializa_draw(t_data *data);
-int	handle_input(int keysym, t_data *data);
+int		handle_input(int keysym, t_data *data);
 void	move_character(t_data *data, int x, int y, int key);
 
 
 //draw_map_utils.c
-
+void	init_items(t_data *data);
 void	init_window(t_data *data);
 void	add_imgs_util(t_data *data, t_img *img, char *path);
 void	add_imgs(t_data *data);
@@ -185,10 +202,16 @@ void		merge_tile(t_data *data, t_img *overlap, int row, int col);
 
 
 //movements.c
-void	move_up(t_data *data, int x, int y);
-void	move_down(t_data *data, int x, int y);
-void	move_left(t_data *data, int x, int y);
-void	move_right(t_data *data, int x, int y);
+t_bool	move_up(t_data *data, int x, int y);
+t_bool	move_down(t_data *data, int x, int y);
+t_bool	move_left(t_data *data, int x, int y);
+t_bool	move_right(t_data *data, int x, int y);
 void	check_changes(t_data *data, t_map *map, int p_x, int p_y);
+
+//foe_movement.c
+void	move_foe(t_data *data, int y, int x, int mov);
+void	update_map(t_data *data);
+
+
 
 #endif

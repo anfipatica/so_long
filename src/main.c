@@ -2,10 +2,10 @@
 
 int	main(int argc, char **argv)
 {
-	t_data	data;
-
+	t_map	map;
 	if (argc != 2)
 		return (1);
-	read_map(&data, argv[1]);
-
+	map = read_map(argv[1]);
+	create_map(&map);
+	draw_map(&map);
 }

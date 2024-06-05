@@ -22,6 +22,8 @@ void	invalid_map(t_map *map, int error)
 		printf("The exit cannot be reached from the starting point (P). Invalid ber\n");
 	else if (error == NON_REACHABLE_COLLECTIBLE)
 		printf("At least one collectible cannot be reached from the starting point (P). Invalid ber\n");
+	else if (error == NON_REACHABLE_FOE)
+		printf("At least one foe is on non reachable location. Enemies are supposed to be able to reach you!! Invalid ber\n");
 	free_map(map);
 	exit(1);
 }

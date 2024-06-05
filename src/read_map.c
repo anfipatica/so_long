@@ -2,7 +2,6 @@
 
 /* Trim line trims the line to make sure there is no new line before or after.
 This is important to keep the same format before doing any validations on the map.*/
-
 void	trim_line(t_map *map)
 {
 	map->map_line_buf = ft_strdup(map->map_line);
@@ -30,7 +29,6 @@ void	trim_line(t_map *map)
 	and then we send it to pre_floof_fill where more validations will be made and it will start
 	the flood_fill process to check if the map can be solved (Exit is reachable).
 */
-
 void	create_map(t_map *map)
 {
 	int	i;
@@ -51,7 +49,7 @@ void	create_map(t_map *map)
  * This function reads the map using gnl. It will save it inside one line.
  * Then, it will send it to create_map where it will be splited to create a matrix.
 */
-void	read_map(t_data *data, char *map_name)
+t_map	read_map(char *map_name)
 {
 	t_map	map;
 
@@ -64,8 +62,7 @@ void	read_map(t_data *data, char *map_name)
 		{
 			trim_line(&map);
 			map.row_num = count_char(map.map_line, '\n');
-			create_map(&map);
-			draw_map(&map);
+			return (map);
 		}
 		else
 		{
@@ -76,4 +73,5 @@ void	read_map(t_data *data, char *map_name)
 		}
 	}
 	free_map(&map);
+	return (map);
 }

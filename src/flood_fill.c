@@ -1,10 +1,27 @@
 #include "../inc/so_long.h"
 
+//impar accesible_f = movimiento horizontal.
+//par accesible_f = movimiento vertical.
 int	check_tile(t_map *map, int y, int x)
 {
 	if (map->map[y][x] != '1' && map->ff_map[y][x] == 0)
 	{
-		return (1);
+		if (map->map[y][x] == 'F' && map->accesible_f % 2 == 0)
+		{
+			if (map->map[y][x - 1] == '0' || map->map[y][x + 1] == '0')
+				return (1);
+			else
+				return (0);
+		}
+		else if (map->map[y][x] == 'F')
+		{
+			if (map->map[y - 1][x] == '0' || map->map[y + 1][x] == '0')
+				return (1);
+			else
+				return (0);
+		}
+		else
+			return (1);
 	}
 	else
 		return (0);
@@ -46,6 +63,8 @@ void	flood_fill(t_map *map, int y, int x, int i)
 		map->accesible_c++;
 	if (map->map[y][x] == 'E')
 		map->accesible_e++;
+	if (map->map[y][x] == 'F')
+		map->accesible_f++;
 	tiles[0] = check_tile(map, y - 1, x);
 	tiles[1] = check_tile(map, y + 1, x);
 	tiles[2] = check_tile(map, y, x - 1);
