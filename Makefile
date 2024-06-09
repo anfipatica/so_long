@@ -23,6 +23,7 @@ OBJS = $(OBJS_DIR)/main.o \
 		$(OBJS_DIR)/movements.o \
 		$(OBJS_DIR)/drawing_functions.o \
 		$(OBJS_DIR)/foe_movement.o \
+		$(OBJS_DIR)/free_functions.o \
 		$(OBJS_DIR)/utils.o
 
 .PHONY = clean all fclean re

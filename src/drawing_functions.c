@@ -59,9 +59,9 @@ void	merge_tile(t_data *data, t_img *overlap, int row, int col)
 	t_img tile;
 
 	y = -1;
-	if (data->map->map[row][col] == 'E')
-		tile = *data->items->exit;
-	else
+	//if (data->map->map[row][col] == 'E')
+	//	tile = *data->items->exit;
+	//else
 		tile = *data->items->floor;
 	while (++y < TILE_PIXEL)
 	{
@@ -69,7 +69,6 @@ void	merge_tile(t_data *data, t_img *overlap, int row, int col)
 		while (++x < TILE_PIXEL)
 		{
 			color = get_pixel_img(*overlap, x, y);
-			//printf("%d\n", color);
 			if (color != (unsigned int)0xFF000000)
 				put_pixel_img(data->layer, x + (TILE_PIXEL * col), y + (TILE_PIXEL * row), color);
 			else

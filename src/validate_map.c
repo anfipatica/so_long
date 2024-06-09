@@ -7,12 +7,15 @@
 */
 void	validate_path(t_map *map)
 {
+	printf("MEEEEH %d, %d\n", map->e_count, map->accesible_e);
 	if (map->e_count != map->accesible_e)
 		invalid_map(map, NON_REACHABLE_EXIT);
 	if (map->c_count != map->accesible_c)
 		invalid_map(map, NON_REACHABLE_COLLECTIBLE);
 	if (map->f_count != map->accesible_f)
 		invalid_map(map, NON_REACHABLE_FOE);
+	printf("MEEEEH\n");
+	
 }
 
 /**
@@ -81,7 +84,6 @@ void	validate_map(t_map *map)
 	int	i;
 
 	i = -1;
-	printf("col = %d, row= %d\n", map->col_num, map->row_num);
 	if (map->col_num <= map->row_num)
 		invalid_map(map, WRONG_SHAPE);
 	while ((map->map)[++i])

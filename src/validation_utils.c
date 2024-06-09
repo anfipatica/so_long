@@ -1,5 +1,20 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   validation_utils.c                                 :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: anfi <anfi@student.42.fr>                  +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/06/06 23:04:41 by anfi              #+#    #+#             */
+/*   Updated: 2024/06/09 21:43:57 by anfi             ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../inc/so_long.h"
 
+/**
+ * A function to print the corresponding error and correctly exit the program.
+*/
 void	invalid_map(t_map *map, int error)
 {
 	if (error == EMPTY_LINE)
@@ -28,6 +43,10 @@ void	invalid_map(t_map *map, int error)
 	exit(1);
 }
 
+/**
+ * count_char returns how many times it has encountered character c
+ * inside str.
+*/
 int		count_char(const char *str, const char c)
 {
 	int	i;

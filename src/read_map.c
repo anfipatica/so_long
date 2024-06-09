@@ -1,7 +1,21 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   read_map.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: anfi <anfi@student.42.fr>                  +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/06/06 23:07:11 by anfi              #+#    #+#             */
+/*   Updated: 2024/06/06 23:08:05 by anfi             ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../inc/so_long.h"
 
-/* Trim line trims the line to make sure there is no new line before or after.
-This is important to keep the same format before doing any validations on the map.*/
+/**
+ * Trims the line to make sure there is no new line before or after.
+ * This is important to keep the same format before further validations.
+*/
 void	trim_line(t_map *map)
 {
 	map->map_line_buf = ft_strdup(map->map_line);

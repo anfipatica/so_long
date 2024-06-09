@@ -11,8 +11,10 @@
 # include "../src/utils/libft/libft.h"
 
 //TILE_PIXEL = How many pixels is a tile.
+// Recomended REFRESH_RATE: 30000;
 # define TILE_PIXEL 64
 # define BUFFER_SIZE 30
+# define REFRESH_RATE 30000
 
 //coordinates, for an easier readibility.
 # define Y 0
@@ -36,8 +38,7 @@
 # define WINDOW 1
 # define IMAGE 2
 
-//movements for the foes.
-# define NONE 0
+//Direcction of the character.
 # define UP 1
 # define DOWN 2
 # define LEFT 3
@@ -99,9 +100,9 @@ typedef struct s_img
 typedef struct s_item
 {
 	t_img	*floor;
-	t_img	*wall;
+	t_img	*wall[13];
 	t_img	*collectible[2];
-	t_img	*character[4];
+	t_img	*character[10];
 	t_img	*foe[2];
 	t_img	*exit;
 }				t_item;
@@ -120,10 +121,13 @@ typedef struct s_data
 	int		endian;
 	int		movements;
 	int		sprite_state;
+	char	*message;
+	int		char_state;
 }				t_data;
 
 
 //get_next_line.c
+
 char	*get_next_line(int fd);
 char	*ft_read(int fd, char *remain);
 char	*clean_remain(char *remain);
@@ -131,10 +135,12 @@ int		ft_find_end_line(char *line);
 char	*gnl_strnjoin(char *s1, char *s2, int n);
 
 //get_next_line_utils.c
+
 void	ft_free(char **str);
 char	*gnl_strdup(char *s1, int n);
 
 //main.c
+
 void	init_window(t_data *data);
 
 //read_map.c
@@ -155,29 +161,35 @@ void	validate_path(t_map *map);
 
 
 // validation_utils.c
+
 int		count_char(const char *str, const char c);
 void	invalid_map(t_map *map, int error);
 
 
 //flood_fill.c
-int		check_tile(t_map *map, int y, int x);
+
+int		check_enemy_path(char **map, int y, int x, int dir);
+int		check_tile(t_map *map, int y, int x, int dir);
 int		change_tile(t_map *map, int y, int x, int *tiles);
 void	pre_flood_fill(t_map *map);
 void	flood_fill(t_map *map, int y, int x, int i);
 
 
 //flood_fill_utils.c
+
 void	free_matrix_f_malloc(int **matrix, int i);
 void	print_ff_matrix(t_map map);
 int		**create_ff_matrix(int width, int height);
 
 
 //utils.c
+
 void	malloc_failed(t_map *map);
 t_map	init_map(void);
 void	free_map(t_map *map);
 
 //draw_map.c
+
 void	draw_map(t_map *map);
 void	initializa_draw(t_data *data);
 int		handle_input(int keysym, t_data *data);
@@ -185,6 +197,7 @@ void	move_character(t_data *data, int x, int y, int key);
 
 
 //draw_map_utils.c
+
 void	init_items(t_data *data);
 void	init_window(t_data *data);
 void	add_imgs_util(t_data *data, t_img *img, char *path);
@@ -199,9 +212,8 @@ unsigned int	get_pixel_img(t_img img, int x, int y);
 void		draw_tile(t_data *data, t_img *img, int row, int col);
 void		merge_tile(t_data *data, t_img *overlap, int row, int col);
 
-
-
 //movements.c
+
 t_bool	move_up(t_data *data, int x, int y);
 t_bool	move_down(t_data *data, int x, int y);
 t_bool	move_left(t_data *data, int x, int y);
@@ -209,9 +221,15 @@ t_bool	move_right(t_data *data, int x, int y);
 void	check_changes(t_data *data, t_map *map, int p_x, int p_y);
 
 //foe_movement.c
-void	move_foe(t_data *data, int y, int x, int mov);
+
+void	move_foe(t_data *data, int y, int x);
 void	update_map(t_data *data);
 
+//free_functions.c
+
+void	free_map(t_map *map);
+void	destroy_element(int type, t_data *data, void *element);
+void	free_items(t_data *data, int i);
 
 
 #endif

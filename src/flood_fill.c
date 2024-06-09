@@ -1,24 +1,43 @@
 #include "../inc/so_long.h"
 
-//impar accesible_f = movimiento horizontal.
-//par accesible_f = movimiento vertical.
-int	check_tile(t_map *map, int y, int x)
+int	check_enemy_path(char **map, int y, int x, int dir)
+{
+	int	valid_tile;
+	int	temp_x;
+
+	valid_tile = 0;
+	temp_x = x;
+	printf("%c: x = %d, y = %d\n",map[y][x], x, y);
+	while (map[y][--x] == '0')
+	{
+		printf("--%c, %c, %c\n", map[y][x],  map[y + 1][x],  map[y - 1][x]);
+		if (dir == DOWN && (map[y + 1][x] == '0' && map[y][x - 1] == '0'))
+			valid_tile++;
+		else if (dir == UP && (map[y - 1][x] == '0' && map[y][x - 1] == '0'))
+			valid_tile++;
+	}
+	x = temp_x;
+	while (map[y][x] == '0' || x == temp_x)
+	{
+		printf("++%c, %c, %c\n", map[y][x],  map[y + 1][x],  map[y - 1][x]);
+		if (dir == DOWN && (map[y + 1][x] == '0' && map[y][x - 1] == '0'))
+			valid_tile++;
+		else if (dir == UP && (map[y - 1][x] == '0' && map[y][x - 1] == '0'))
+			valid_tile++;
+		x++;
+	}
+	return (valid_tile);
+}
+int	check_tile(t_map *map, int y, int x, int dir)
 {
 	if (map->map[y][x] != '1' && map->ff_map[y][x] == 0)
 	{
-		if (map->map[y][x] == 'F' && map->accesible_f % 2 == 0)
+		if (map->map[y][x] == 'F')
 		{
-			if (map->map[y][x - 1] == '0' || map->map[y][x + 1] == '0')
-				return (1);
-			else
+			if (check_enemy_path(map->map, y, x, dir) == 0)
 				return (0);
-		}
-		else if (map->map[y][x] == 'F')
-		{
-			if (map->map[y - 1][x] == '0' || map->map[y + 1][x] == '0')
-				return (1);
 			else
-				return (0);
+				return (1);
 		}
 		else
 			return (1);
@@ -55,6 +74,9 @@ int	change_tile(t_map *map, int y, int x, int *tiles)
 	return (changed);
 }
 
+/**
+ * The main function for my flood_fill algorithm
+*/
 void	flood_fill(t_map *map, int y, int x, int i)
 {
 	int	tiles[5];
@@ -65,10 +87,10 @@ void	flood_fill(t_map *map, int y, int x, int i)
 		map->accesible_e++;
 	if (map->map[y][x] == 'F')
 		map->accesible_f++;
-	tiles[0] = check_tile(map, y - 1, x);
-	tiles[1] = check_tile(map, y + 1, x);
-	tiles[2] = check_tile(map, y, x - 1);
-	tiles[3] = check_tile(map, y, x + 1);
+	tiles[0] = check_tile(map, y - 1, x, DOWN);
+	tiles[1] = check_tile(map, y + 1, x, UP);
+	tiles[2] = check_tile(map, y, x - 1, RIGHT);
+	tiles[3] = check_tile(map, y, x + 1, LEFT);
 	if (change_tile(map, y, x, tiles) != 0)
 		i++;
 	if (tiles[0] == 1)
@@ -81,16 +103,18 @@ void	flood_fill(t_map *map, int y, int x, int i)
 		flood_fill(map, y, x + 1, i);
 }
 
+/**
+ * We create an int matrix to use for the flood_fill algorithm, call flood_fill
+ * and once it is done we check the exit and collectibles are reachable.
+*/
 void	pre_flood_fill(t_map *map)
 {
-	printf("antes de nada: col = %d, row = %d\n", map->col_num, map->row_num);
 	map->ff_map = create_ff_matrix(map->col_num, map->row_num);
 	if (map->ff_map == 0)
 		malloc_failed(map);
 	print_ff_matrix(*map);
-	printf("%d, %d\n", map->p_pos[Y], map->p_pos[X]);
 	map->ff_map[map->p_pos[Y]][map->p_pos[X]] = 1;
 	flood_fill(map, map->p_pos[Y], map->p_pos[X], 2);
-	print_ff_matrix(*map);
+	//print_ff_matrix(*map);
 	validate_path(map);
 }
