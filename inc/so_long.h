@@ -97,16 +97,21 @@ typedef struct s_img
 
 }				t_img;
 
+typedef struct s_foe
+{
+	int	dir;
+	int	x;
+	int y;
+}				t_foe;
 typedef struct s_item
 {
 	t_img	*floor;
-	t_img	*wall[13];
+	t_img	*wall[17];
 	t_img	*collectible[2];
 	t_img	*character[10];
 	t_img	*foe[2];
 	t_img	*exit;
 }				t_item;
-
 
 
 typedef struct s_data
@@ -123,6 +128,7 @@ typedef struct s_data
 	int		sprite_state;
 	char	*message;
 	int		char_state;
+	t_foe	*foe_info;
 }				t_data;
 
 
@@ -222,7 +228,8 @@ void	check_changes(t_data *data, t_map *map, int p_x, int p_y);
 
 //foe_movement.c
 
-void	move_foe(t_data *data, int y, int x);
+void	register_foes(t_data *data, int y, int x);
+void	move_foe(t_data *data, int y, int x, int n);
 void	update_map(t_data *data);
 
 //free_functions.c

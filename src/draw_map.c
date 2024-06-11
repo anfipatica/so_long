@@ -16,7 +16,8 @@ void	change_collectible(t_data *data)
 				merge_tile(data, data->items->collectible[data->sprite_state], y, x);
 			else if (data->map->map[y][x] == 'F')
 			{
-				move_foe(data, y, x);
+				printf("VAMOS A ENTRAR EN MOVE_FOE EN %d - %d\n", y, x);
+				move_foe(data, y, x, data->map->ff_map[y][x]);
 			}
 		}
 	}
@@ -60,6 +61,14 @@ void	draw_wall(t_data *data, int y, int x)
 		merge_tile(data, data->items->wall[12], y, x);
 	else if (map[y - 1][x] == '1' && map[y][x + 1] == '1' && map[y + 1][x] == '1' && map[y][x - 1] == '1')
 		merge_tile(data, data->items->wall[1], y, x);
+	else if (map[y - 1][x] == '1' && map[y][x + 1] == '1' && map[y][x - 1] == '1')
+		merge_tile(data, data->items->wall[13], y, x);
+	else if (map[y - 1][x] == '1' && map[y + 1][x] == '1' && map[y][x + 1] == '1')
+		merge_tile(data, data->items->wall[14], y, x);
+	else if (map[y][x + 1] == '1' && map[y + 1][x] == '1' && map[y][x - 1] == '1')
+		merge_tile(data, data->items->wall[15], y, x);
+	else if (map[y - 1][x] == '1' && map[y][x - 1] == '1' && map[y + 1][x] == '1')
+		merge_tile(data, data->items->wall[16], y, x);
 	else if (map[y][x + 1] == '1' && map[y][x - 1] == '1')
 		merge_tile(data, data->items->wall[2], y, x);
 	else if (map[y - 1][x] == '1' && map[y + 1][x] == '1')
@@ -107,28 +116,14 @@ void	initialize_draw(t_data *data)
 			else if (data->map->map[y][x] == 'E')
 				merge_tile(data, data->items->exit, y, x);
 			else if (data->map->map[y][x] == 'F')
+			{
+				register_foes(data, y, x);
 				merge_tile(data, data->items->foe[0], y, x);
+			}
 		}
 	}
+
 }
-
-int	handle_input(int keysym, t_data *data)
-{
-	int		p_x;
-	int		p_y;
-
-	p_x = data->map->p_pos[X];
-	p_y = data->map->p_pos[Y];
-	if (keysym == XK_Escape)
-		free_data(data);
-	if (keysym == XK_w || keysym == XK_s || keysym == XK_a || keysym == XK_d)
-	{
-		move_character(data, p_x, p_y, keysym);
-	}
-	return (0);
-}
-
-
 
 int	change_sprite(t_data *data)
 {
@@ -136,8 +131,11 @@ int	change_sprite(t_data *data)
 
 	if (!i)
 		i = 0;
+	if (i * 1000 == 0)
+		printf("i = %d\n", i);
 	if (++i > REFRESH_RATE)
 	{
+		printf("HORA DE REFRESZARªªªªªªªªªªªªªªªªª!!!!!!!!!\n");
 		i = 0;
 		change_collectible(data);
 		if (data->char_state == DOWN && data->sprite_state == 0)
@@ -156,6 +154,15 @@ int	change_sprite(t_data *data)
 			merge_tile(data, data->items->character[8], data->map->p_pos[Y], data->map->p_pos[X]);
 		else if (data->char_state == RIGHT)
 			merge_tile(data, data->items->character[3], data->map->p_pos[Y], data->map->p_pos[X]);
+		
+		for (int y = 0; y < data->map->row_num; y++)
+		{
+			printf("\n");
+			for (int x = 0; x < data->map->col_num; x++)
+				printf("%c", data->map->map[y][x]);
+		}
+			printf("\n");
+
 		mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->layer->img_ptr, 0, 0);
 		mlx_string_put(data->mlx_ptr, data->win_ptr, 30, 30, (unsigned int)0xAFBED6, data->message);
 		check_changes(data, data->map, data->map->p_pos[Y], data->map->p_pos[X]);
@@ -163,16 +170,51 @@ int	change_sprite(t_data *data)
 	return (0);
 }
 
+int	handle_input(int keysym, t_data *data)
+{
+	int		p_x;
+	int		p_y;
+	static int		i;
+
+	p_x = data->map->p_pos[X];
+	p_y = data->map->p_pos[Y];
+	if (keysym == XK_Escape)
+		free_data(data);
+	if (i == 0 && keysym != XK_Return)
+		++i;
+	else if (i++ == 1)
+	{
+		mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->layer->img_ptr, 0, 0);
+		mlx_string_put(data->mlx_ptr, data->win_ptr, 30, 30,
+			(unsigned int)0xAFBED6, data->message);
+		mlx_loop_hook(data->mlx_ptr, change_sprite, data);
+	}
+	else if (keysym == XK_w || keysym == XK_s || keysym == XK_a || keysym == XK_d)
+		move_character(data, p_x, p_y, keysym);
+	return (0);
+}
+
+
+/**
+ * Where we start working with X11 and minilibx.
+*/
 void	draw_map(t_map *map)
 {
 	t_data	data;
 	data.map = map;
+	int	centerx;
+	int	centery;
+
+	centerx = data.map->col_num * (TILE_PIXEL / 2) - 80;
+	centery = data.map->row_num * (TILE_PIXEL / 2);
 	init_window(&data);
 	initialize_draw(&data);
 	mlx_put_image_to_window(data.mlx_ptr, data.win_ptr, data.layer->img_ptr, 0, 0);
-	mlx_string_put(data.mlx_ptr, data.win_ptr, 30, 30, (unsigned int)0xAFBED6, data.message);
+	mlx_string_put(data.mlx_ptr, data.win_ptr, centerx - 2, centery + 1,
+		(unsigned int)0x000000, "PRESS ANY KEY TO START");
+	mlx_string_put(data.mlx_ptr, data.win_ptr, centerx, centery,
+		(unsigned int)0xAFBED6, "PRESS ANY KEY TO START");
 	mlx_hook(data.win_ptr, DestroyNotify, StructureNotifyMask, &free_data, &data);
 	mlx_key_hook(data.win_ptr, handle_input, &data);
-	mlx_loop_hook(data.mlx_ptr, change_sprite, &data);
 	mlx_loop(data.mlx_ptr);
 }

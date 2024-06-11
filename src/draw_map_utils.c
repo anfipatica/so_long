@@ -6,7 +6,7 @@
 /*   By: anfi <anfi@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/06 22:38:21 by anfi              #+#    #+#             */
-/*   Updated: 2024/06/09 22:17:16 by anfi             ###   ########.fr       */
+/*   Updated: 2024/06/11 21:44:18 by anfi             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,10 @@ void *calloc_or_free(t_data *data, int n, int size)
 	return (NULL);
 }
 
-
+/**
+ * It allocates memory for every t_item inside t_data.
+ * Yes, the wall alone needs 17 callocs, every sprite is a t_item element.
+*/
 void	init_items(t_data *data)
 {
 	int i;
@@ -33,7 +36,7 @@ void	init_items(t_data *data)
 	data->layer = calloc_or_free(data, 1, sizeof(t_img));
 	data->items = calloc_or_free(data, 1, sizeof(t_item));
 	data->items->floor = calloc_or_free(data, 1, sizeof(t_img));
-	while(++i < 13)
+	while(++i < 17)
 		data->items->wall[i] = calloc_or_free(data, 1, sizeof(t_img));
 	i = -1;
 	while (++i < 10)
@@ -64,6 +67,11 @@ void	check_screen_size(t_data *data, int width, int height)
 	}
 }
 
+/**
+ * It initializes every item inside t_data, starts the connection with the X11
+ * server, creates the window, and calls other functions that initialize items.
+ * 
+*/
 void	init_window(t_data *data)
 {
 	int	width;
@@ -78,11 +86,12 @@ void	init_window(t_data *data)
 	if (!data->win_ptr)
 		free_data(data);
 	init_items(data);
+	data->foe_info = ft_calloc(data->map->f_count, sizeof(t_foe));
 	data->layer->img_ptr = mlx_new_image(data->mlx_ptr, width, height);
 	data->layer->addr = mlx_get_data_addr(data->layer->img_ptr, &data->layer->bpp, &data->layer->line_len, &data->endian);
 	data->sprite_state = 0;
 	data->movements = 0;
-	data->message = ft_strdup("Movements made: 0");
+	data->message = "Movements made: 0";
 	data->char_state = DOWN;
 	add_imgs(data);
 }
@@ -103,6 +112,9 @@ void	add_imgs_util(t_data *data, t_img *img, char *path)
 	img->addr = mlx_get_data_addr(img->img_ptr, &img->bpp, &img->line_len, &img->endian);
 }
 
+/**
+ * It adds every sprite into its corresponding t_img element.
+*/
 void	add_imgs(t_data *data)
 {
 	add_imgs_util(data, data->items->floor, "./images/floor.xpm");
@@ -129,6 +141,11 @@ void	add_imgs(t_data *data)
 	add_imgs_util(data, data->items->wall[10], "./images/wall_bottom.xpm");
 	add_imgs_util(data, data->items->wall[11], "./images/wall_left.xpm");
 	add_imgs_util(data, data->items->wall[12], "./images/wall_limit.xpm");
+	add_imgs_util(data, data->items->wall[13], "./images/wall_t_up.xpm");
+	add_imgs_util(data, data->items->wall[14], "./images/wall_t_right.xpm");
+	add_imgs_util(data, data->items->wall[15], "./images/wall_t_down.xpm");
+	add_imgs_util(data, data->items->wall[16], "./images/wall_t_left.xpm");
+	
 	add_imgs_util(data, data->items->exit, "./images/exit.xpm");
 	add_imgs_util(data, data->items->collectible[0], "./images/collectible0.xpm");
 	add_imgs_util(data, data->items->collectible[1], "./images/collectible1.xpm");

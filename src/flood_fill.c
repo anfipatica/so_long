@@ -1,32 +1,52 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   flood_fill.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: anfi <anfi@student.42.fr>                  +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/06/10 19:55:04 by anfi              #+#    #+#             */
+/*   Updated: 2024/06/10 20:46:32 by anfi             ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+
 #include "../inc/so_long.h"
 
 int	check_enemy_path(char **map, int y, int x, int dir)
 {
 	int	valid_tile;
 	int	temp_x;
+	int	enemies;
 
 	valid_tile = 0;
+	enemies = 0;
 	temp_x = x;
 	printf("%c: x = %d, y = %d\n",map[y][x], x, y);
-	while (map[y][--x] == '0')
+	while (map[y][--x] == '0' || map[y][x] == 'F')
 	{
 		printf("--%c, %c, %c\n", map[y][x],  map[y + 1][x],  map[y - 1][x]);
-		if (dir == DOWN && (map[y + 1][x] == '0' && map[y][x - 1] == '0'))
+		if (map[y][x] == 'F')
+			enemies++;
+		if (dir == DOWN && (map[y + 1][x] == '0' && (map[y][x - 1] == '0' || map[y][x - 1] == 'F')))
 			valid_tile++;
-		else if (dir == UP && (map[y - 1][x] == '0' && map[y][x - 1] == '0'))
+		else if (dir == UP && (map[y - 1][x] == '0' && (map[y][x - 1] == '0' || map[y][x - 1] == 'F')))
 			valid_tile++;
 	}
 	x = temp_x;
-	while (map[y][x] == '0' || x == temp_x)
+	while (map[y][x] == '0' || map[y][x] == 'F')
 	{
 		printf("++%c, %c, %c\n", map[y][x],  map[y + 1][x],  map[y - 1][x]);
+		if (map[y][x] == 'F')
+			enemies++;
 		if (dir == DOWN && (map[y + 1][x] == '0' && map[y][x - 1] == '0'))
 			valid_tile++;
 		else if (dir == UP && (map[y - 1][x] == '0' && map[y][x - 1] == '0'))
 			valid_tile++;
 		x++;
 	}
-	return (valid_tile);
+	printf("valid_tiles = %d, enemies = %d\n", valid_tile, enemies);
+	return (valid_tile - enemies);
 }
 int	check_tile(t_map *map, int y, int x, int dir)
 {
@@ -34,7 +54,7 @@ int	check_tile(t_map *map, int y, int x, int dir)
 	{
 		if (map->map[y][x] == 'F')
 		{
-			if (check_enemy_path(map->map, y, x, dir) == 0)
+			if (check_enemy_path(map->map, y, x, dir) < 0)
 				return (0);
 			else
 				return (1);
