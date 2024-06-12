@@ -175,7 +175,7 @@ void	invalid_map(t_map *map, int error);
 //flood_fill.c
 
 int		check_enemy_path(char **map, int y, int x, int dir);
-int		check_tile(t_map *map, int y, int x, int dir);
+int		check_tile(t_map *map, int y, int x);
 int		change_tile(t_map *map, int y, int x, int *tiles);
 void	pre_flood_fill(t_map *map);
 void	flood_fill(t_map *map, int y, int x, int i);
