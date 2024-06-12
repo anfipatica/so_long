@@ -16,12 +16,12 @@ void	change_collectible(t_data *data)
 				merge_tile(data, data->items->collectible[data->sprite_state], y, x);
 			else if (data->map->map[y][x] == 'F')
 			{
-				printf("VAMOS A ENTRAR EN MOVE_FOE EN %d - %d\n", y, x);
 				move_foe(data, y, x, data->map->ff_map[y][x]);
 			}
 		}
 	}
 	update_map(data);
+
 }
 
 void	move_character(t_data *data, int x, int y, int key)
@@ -52,6 +52,18 @@ void	move_character(t_data *data, int x, int y, int key)
 }
 
 
+void	centered_text_on_screen(t_data *data, char *str, int deviation)
+{
+	int	centerx;
+	int	centery;
+
+	centerx = data->map->col_num * (TILE_PIXEL / 2) - (ft_strlen(str) * 3);
+	centery = data->map->row_num * (TILE_PIXEL / 2);
+	mlx_string_put(data->mlx_ptr, data->win_ptr, centerx - 2, centery + 1 + deviation,
+		(unsigned int)0x000000, str);
+	mlx_string_put(data->mlx_ptr, data->win_ptr, centerx, centery + deviation,
+		(unsigned int)0xAFBED6, str);
+}
 void	draw_wall(t_data *data, int y, int x)
 {
 	char	**map;
@@ -154,14 +166,6 @@ int	change_sprite(t_data *data)
 			merge_tile(data, data->items->character[8], data->map->p_pos[Y], data->map->p_pos[X]);
 		else if (data->char_state == RIGHT)
 			merge_tile(data, data->items->character[3], data->map->p_pos[Y], data->map->p_pos[X]);
-		
-		for (int y = 0; y < data->map->row_num; y++)
-		{
-			printf("\n");
-			for (int x = 0; x < data->map->col_num; x++)
-				printf("%c", data->map->map[y][x]);
-		}
-			printf("\n");
 
 		mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->layer->img_ptr, 0, 0);
 		mlx_string_put(data->mlx_ptr, data->win_ptr, 30, 30, (unsigned int)0xAFBED6, data->message);
@@ -202,18 +206,12 @@ void	draw_map(t_map *map)
 {
 	t_data	data;
 	data.map = map;
-	int	centerx;
-	int	centery;
 
-	centerx = data.map->col_num * (TILE_PIXEL / 2) - 80;
-	centery = data.map->row_num * (TILE_PIXEL / 2);
 	init_window(&data);
 	initialize_draw(&data);
 	mlx_put_image_to_window(data.mlx_ptr, data.win_ptr, data.layer->img_ptr, 0, 0);
-	mlx_string_put(data.mlx_ptr, data.win_ptr, centerx - 2, centery + 1,
-		(unsigned int)0x000000, "PRESS ANY KEY TO START");
-	mlx_string_put(data.mlx_ptr, data.win_ptr, centerx, centery,
-		(unsigned int)0xAFBED6, "PRESS ANY KEY TO START");
+	centered_text_on_screen(&data, "PRESS ANY KEY TO START", 0);
+	centered_text_on_screen(&data, "Rules: Move with WASD, get all the collectibles and reach the exit!", 20);
 	mlx_hook(data.win_ptr, DestroyNotify, StructureNotifyMask, &free_data, &data);
 	mlx_key_hook(data.win_ptr, handle_input, &data);
 	mlx_loop(data.mlx_ptr);

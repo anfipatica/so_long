@@ -186,6 +186,8 @@ void	flood_fill(t_map *map, int y, int x, int i);
 void	free_matrix_f_malloc(int **matrix, int i);
 void	print_ff_matrix(t_map map);
 int		**create_ff_matrix(int width, int height);
+void	print_matrix(t_map map);
+
 
 
 //utils.c
@@ -231,6 +233,10 @@ void	check_changes(t_data *data, t_map *map, int p_x, int p_y);
 void	register_foes(t_data *data, int y, int x);
 void	move_foe(t_data *data, int y, int x, int n);
 void	update_map(t_data *data);
+void	move_foe_right(t_data *data, int y, int x, int n);
+void	move_foe_left(t_data *data, int y, int x, int n);
+
+
 
 //free_functions.c
 

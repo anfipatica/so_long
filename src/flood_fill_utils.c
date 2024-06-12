@@ -24,6 +24,18 @@ void	print_ff_matrix(t_map map)
 	printf("\n-----------------------------\n");
 }
 
+void	print_matrix(t_map map)
+{
+	for (int y = 0; y < map.row_num; y++)
+	{
+		for (int x = 0; x < map.col_num; x++)
+			printf("%c", map.map[y][x]);
+		printf("\n");
+	}
+	printf("\n+++++++++++++++++++++++++++\n");
+
+}
+
 int		**create_ff_matrix(int width, int height)
 {
 	int		i;
