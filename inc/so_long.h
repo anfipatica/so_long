@@ -39,6 +39,7 @@
 # define IMAGE 2
 
 //Direcction of the character.
+# define NONE 0
 # define UP 1
 # define DOWN 2
 # define LEFT 3

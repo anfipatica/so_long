@@ -6,7 +6,7 @@
 /*   By: ymunoz-m <ymunoz-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 13:09:31 by ymunoz-m          #+#    #+#             */
-/*   Updated: 2024/06/12 21:14:32 by ymunoz-m         ###   ########.fr       */
+/*   Updated: 2024/06/13 14:30:20 by ymunoz-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,10 +60,15 @@ void	move_foe_left(t_data *data, int y, int x, int n)
 	{
 		data->map->ff_map[y][x - 1] = n;
 		data->map->ff_map[y][x] = -1;
-		merge_tile(data, data->items->foe[data->sprite_state], y, x - 1);
-		draw_tile(data, data->items->floor, y, x);
 		data->foe_info[n].x = x - 1;
 	}
+}
+
+void	foe_still(t_data *data, int y, int x, int n)
+{
+	printf("estoy quietito!!\n");
+	data->foe_info[n].dir = NONE;
+	data->map->ff_map[y][x] = n;
 }
 
 int	check_foes_sides(t_data *data, int y, int x, int n)
@@ -73,7 +78,10 @@ int	check_foes_sides(t_data *data, int y, int x, int n)
 
 	left_n = data->map->ff_map[y][x - 1];
 	right_n = data->map->ff_map[y][x + 1];
-	if (data->foe_info[n].dir == LEFT)
+	printf("n = %d, -x = %c, +x = %c\n", n, data->map->map[y][x - 1], data->map->map[y][x + 1]);
+	if (data->map->map[y][x - 1] == '1' && data->map->map[y][x + 1] == '1')
+		return (foe_still(data, y, x, n), 1);
+	else if (data->foe_info[n].dir == LEFT)
 	{
 		if (data->map->ff_map[y][x - 1] != -1 && data->foe_info[left_n].dir == RIGHT)
 		{
@@ -83,7 +91,6 @@ int	check_foes_sides(t_data *data, int y, int x, int n)
 		}
 		return (0);
 	}
-	
 	else if (data->map->map[y][x + 1] == 'F' && data->foe_info[right_n].dir == LEFT)
 	{
 		move_foe_left(data, y, x, n);
@@ -102,7 +109,8 @@ void	move_foe_right(t_data *data, int y, int x, int n)
 		move_foe_left(data, y, x, n);
 	}
 	else if (ft_strchr("F", data->map->map[y][x + 1]) != NULL
-		&& data->foe_info[data->map->ff_map[y][x + 1]].dir == LEFT)
+		&& data->foe_info[data->map->ff_map[y][x + 1]].dir == LEFT
+		&&data->map->map[y][x - 1] != '1')
 	{
 		printf("4. He entrado en este if uwu\n");
 		move_foe_left(data, y, x, n);
@@ -111,8 +119,6 @@ void	move_foe_right(t_data *data, int y, int x, int n)
 	{
 		data->map->ff_map[y][x + 1] = n;
 		data->map->ff_map[y][x] = -1;
-		merge_tile(data, data->items->foe[data->sprite_state], y, x + 1);
-		draw_tile(data, data->items->floor, y, x);
 		data->foe_info[n].x = x + 1;
 	}
 }
@@ -121,7 +127,9 @@ void	move_foe(t_data *data, int y, int x, int n)
 {
 	printf("antes de ningún movimiento:\n");
 	print_ff_matrix(*data->map);
-	if (data->foe_info[n].dir == LEFT)
+	if (data->foe_info[n].dir == NONE)
+		foe_still(data, y, x, n);
+	else if (data->foe_info[n].dir == LEFT)
 	{
 		printf("en un inicio, vamos a la izquierda\n");
 		if (check_foes_sides(data, y, x, n) == 0)

@@ -6,7 +6,7 @@
 /*   By: ymunoz-m <ymunoz-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 19:55:04 by anfi              #+#    #+#             */
-/*   Updated: 2024/06/12 21:18:38 by ymunoz-m         ###   ########.fr       */
+/*   Updated: 2024/06/13 13:33:31 by ymunoz-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ int	check_enemy_path(char **map, int y, int x, int dir)
 }
 int	check_tile(t_map *map, int y, int x)
 {
-	if (map->map[y][x] != '1' && map->map[y][x] != 'F' && map->ff_map[y][x] == 0)
+	if (map->map[y][x] != '1' && map->ff_map[y][x] == 0)
 	{
 		return (1);
 	}
@@ -87,7 +87,7 @@ int	change_tile(t_map *map, int y, int x, int *tiles)
 }
 
 /**
- * The main function for my flood_fill algorithm
+ * The main function for my flood_fill algorithm.
 */
 void	flood_fill(t_map *map, int y, int x, int i)
 {
@@ -142,7 +142,7 @@ void	pre_flood_fill(t_map *map)
 	print_ff_matrix(*map);
 	map->ff_map[map->p_pos[Y]][map->p_pos[X]] = 1;
 	flood_fill(map, map->p_pos[Y], map->p_pos[X], 2);
-	//print_ff_matrix(*map);
+	print_ff_matrix(*map);
 	validate_path(map);
 	clean_ff_matrix(map);
 }
