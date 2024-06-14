@@ -232,10 +232,10 @@ void	check_changes(t_data *data, t_map *map, int p_x, int p_y);
 //foe_movement.c
 
 void	register_foes(t_data *data, int y, int x);
-void	move_foe(t_data *data, int y, int x, int n);
+int		move_foe(t_data *data, int y, int x, int n);
 void	update_map(t_data *data);
-void	move_foe_right(t_data *data, int y, int x, int n);
-void	move_foe_left(t_data *data, int y, int x, int n);
+int		move_foe_right(t_data *data, int y, int x, int n);
+int		move_foe_left(t_data *data, int y, int x, int n);
 
 
 
