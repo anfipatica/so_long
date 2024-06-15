@@ -131,6 +131,7 @@ typedef struct s_data
 	char	*message;
 	int		char_state;
 	t_foe	*foe_info;
+	t_bool	on_exit;
 }				t_data;
 
 
@@ -237,6 +238,7 @@ int		move_foe(t_data *data, int y, int x, int n);
 void	update_map(t_data *data);
 int		move_foe_right(t_data *data, int y, int x, int n);
 int		move_foe_left(t_data *data, int y, int x, int n);
+int		check_if_foe_can_move(t_data *data, int y, int x);
 
 
 

@@ -131,11 +131,11 @@ void	initialize_draw(t_data *data)
 			else if (data->map->map[y][x] == 'F')
 			{
 				register_foes(data, y, x);
+				check_if_foe_can_move(data, y, x);
 				merge_tile(data, data->items->foe[0], y, x);
 			}
 		}
 	}
-
 }
 
 int	change_sprite(t_data *data)
