@@ -7,6 +7,7 @@ void	change_collectible(t_data *data)
 
 	y = -1;
 	data->sprite_state = !data->sprite_state;
+	printf("UNA RONDITA DE MOVER A LOS ENEMIGOS YUHU!!!\n");
 	while (++y < data->map->row_num)
 	{
 		x = -1;
@@ -16,7 +17,7 @@ void	change_collectible(t_data *data)
 				merge_tile(data, data->items->collectible[data->sprite_state], y, x);
 			else if (data->map->map[y][x] == 'F')
 			{
-				move_foe(data, y, x, data->map->ff_map[y][x]);
+				x += move_foe(data, y, x, data->map->ff_map[y][x]);
 			}
 		}
 	}

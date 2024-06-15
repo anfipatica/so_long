@@ -14,7 +14,7 @@
 // Recomended REFRESH_RATE: 30000;
 # define TILE_PIXEL 64
 # define BUFFER_SIZE 30
-# define REFRESH_RATE 30000
+# define REFRESH_RATE 20000
 
 //coordinates, for an easier readibility.
 # define Y 0
@@ -38,7 +38,8 @@
 # define WINDOW 1
 # define IMAGE 2
 
-//Direcction of the character.
+//Directions of the character and foes.
+# define PERMANENT_STILL -1
 # define NONE 0
 # define UP 1
 # define DOWN 2

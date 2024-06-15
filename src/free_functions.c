@@ -6,7 +6,7 @@
 /*   By: anfi <anfi@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/06 22:47:48 by anfi              #+#    #+#             */
-/*   Updated: 2024/06/06 22:54:53 by anfi             ###   ########.fr       */
+/*   Updated: 2024/06/15 20:48:55 by anfi             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ void	free_items(t_data *data, int i)
 {
 	if (data->items && data->items->floor)
 		destroy_element(IMAGE, data, data->items->floor);
-	while (++i < 13)
+	while (++i < 17)
 	{
 		if (data->items && data->items->wall[i]->img_ptr)
 			destroy_element(IMAGE, data, data->items->wall[i]);
@@ -106,6 +106,7 @@ int	free_data(t_data *data)
 		destroy_element(WINDOW, data, data->win_ptr);
 	if (data->mlx_ptr)
 		destroy_element(DISPLAY, data, data->mlx_ptr);
+	free(data->foe_info);
 	free_map(data->map);
 	exit(0);
 }
