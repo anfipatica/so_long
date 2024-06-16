@@ -6,7 +6,7 @@
 /*   By: anfi <anfi@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 13:09:31 by ymunoz-m          #+#    #+#             */
-/*   Updated: 2024/06/15 22:59:12 by anfi             ###   ########.fr       */
+/*   Updated: 2024/06/16 19:40:27 by anfi             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -141,7 +141,6 @@ int		check_if_foe_can_move(t_data *data, int y, int x)
 
 int		move_foe_right(t_data *data, int y, int x, int n)
 {
-	printf("move_foe_right\n");
 	if (data->foe_info[n].dir != RIGHT && ft_strchr("1EC", data->map->map[y][x + 1]))
 		return (change_foe_direction(data, y, x, NONE), 0);
 	if (ft_strchr("1EC", data->map->map[y][x + 1]))
@@ -166,7 +165,6 @@ int		move_foe_right(t_data *data, int y, int x, int n)
 
 int		move_foe_left(t_data *data, int y, int x, int n)
 {
-	printf("move_foe_left\n");
 	if (data->foe_info[n].dir == RIGHT && ft_strchr("1EC", data->map->map[y][x - 1]))
 		return (change_foe_direction(data, y, x, NONE), 0);
 	if (ft_strchr("1EC", data->map->map[y][x - 1]))
@@ -195,8 +193,6 @@ int		move_foe(t_data *data, int y, int x, int n)
 	int	moves;
 
 	moves = 0;
-	printf("antes de ningún movimiento: %d tiene dirección %d\n", n, data->foe_info[n].dir);
-	print_ff_matrix(*data->map);
 	if (data->foe_info[n].dir == PERMANENT_STILL)
 		return (0);
 	if (data->foe_info[n].dir == LEFT || data->foe_info[n].dir == NONE)
@@ -207,8 +203,5 @@ int		move_foe(t_data *data, int y, int x, int n)
 	{
 		moves = move_foe_right(data, y, x, n);
 	}
-	printf("Al terminar el movimiento:\n");
-	print_ff_matrix(*data->map);
-	
 	return (moves);
 }

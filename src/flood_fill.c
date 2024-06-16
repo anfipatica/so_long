@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   flood_fill.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ymunoz-m <ymunoz-m@student.42.fr>          +#+  +:+       +#+        */
+/*   By: anfi <anfi@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 19:55:04 by anfi              #+#    #+#             */
-/*   Updated: 2024/06/13 13:33:31 by ymunoz-m         ###   ########.fr       */
+/*   Updated: 2024/06/16 23:21:49 by anfi             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,8 @@ int	change_tile(t_map *map, int y, int x, int *tiles)
 }
 
 /**
- * The main function for my flood_fill algorithm.
+ * This function checks if any adjacent tile is a walkable tile, and if so
+ * it calls itself again recursively.
 */
 void	flood_fill(t_map *map, int y, int x, int i)
 {
@@ -115,11 +116,6 @@ void	flood_fill(t_map *map, int y, int x, int i)
 		flood_fill(map, y, x + 1, i);
 }
 
-/**
- * We create an int matrix to use for the flood_fill algorithm, call flood_fill
- * and once it is done we check the exit and collectibles are reachable.
-*/
-
 void	clean_ff_matrix(t_map *map)
 {
 	int	y;
@@ -134,15 +130,23 @@ void	clean_ff_matrix(t_map *map)
 	}
 }
 
+/**
+ * The lobby for my flood_fill algorithm. By itself it does nothing, but
+ * calling the correct functions it creates an int matrix, fills it with the
+ * flood_fill algorithm, validates there is a possible path for the exit and
+ * cleans the matrix for a future use (spoiler: I use it for the foe movement).
+*/
 void	pre_flood_fill(t_map *map)
 {
 	map->ff_map = create_ff_matrix(map->col_num, map->row_num);
 	if (map->ff_map == 0)
-		malloc_failed(map);
-	print_ff_matrix(*map);
+	{
+		write(2, "malloc failed. Exiting...\n", 26);
+		free_map(map);
+		exit(1);
+	}
 	map->ff_map[map->p_pos[Y]][map->p_pos[X]] = 1;
 	flood_fill(map, map->p_pos[Y], map->p_pos[X], 2);
-	print_ff_matrix(*map);
 	validate_path(map);
 	clean_ff_matrix(map);
 }

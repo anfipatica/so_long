@@ -6,7 +6,7 @@
 /*   By: anfi <anfi@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/06 23:02:34 by anfi              #+#    #+#             */
-/*   Updated: 2024/06/06 23:02:36 by anfi             ###   ########.fr       */
+/*   Updated: 2024/06/16 23:18:23 by anfi             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,12 +33,4 @@ t_map	init_map(void)
 	map.row_num = 0;
 	map.col_num = 0;
 	return (map);
-}
-
-
-void	malloc_failed(t_map *map)
-{
-	printf("malloc failed. Exiting...\n");
-	free_map(map);
-	exit(1);
 }

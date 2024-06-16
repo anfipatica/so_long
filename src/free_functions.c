@@ -6,7 +6,7 @@
 /*   By: anfi <anfi@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/06 22:47:48 by anfi              #+#    #+#             */
-/*   Updated: 2024/06/15 20:48:55 by anfi             ###   ########.fr       */
+/*   Updated: 2024/06/16 22:17:23 by anfi             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@ void	free_map(t_map *map)
 {
 	int	i;
 
+	if (!map)
+		exit(2);
 	i = -1;
 	while (map->map[++i])
 		free(map->map[i]);
@@ -42,6 +44,7 @@ void	destroy_element(int type, t_data *data, void *element)
 	t_img *img_element;
 
 	img_element = NULL;
+	printf("******************%d\n", type);
 	if (type == DISPLAY)
 	{
 		mlx_destroy_display(data->mlx_ptr);
@@ -49,7 +52,7 @@ void	destroy_element(int type, t_data *data, void *element)
 	}
 	else if (type == WINDOW)
 		mlx_destroy_window(data->mlx_ptr, element);
-	else if (type == IMAGE)
+	else if (type == IMAGE && element != NULL)
 	{
 		img_element = element;
 		mlx_destroy_image(data->mlx_ptr, img_element->img_ptr);
@@ -64,8 +67,11 @@ void	destroy_element(int type, t_data *data, void *element)
 */
 void	free_items(t_data *data, int i)
 {
+	printf("lel\n");
 	if (data->items && data->items->floor)
 		destroy_element(IMAGE, data, data->items->floor);
+	printf("leloloasd\n");
+
 	while (++i < 17)
 	{
 		if (data->items && data->items->wall[i]->img_ptr)
@@ -98,6 +104,7 @@ void	free_items(t_data *data, int i)
 int	free_data(t_data *data)
 {
 	free_items(data, -1);
+	printf("ñeñeñe\n");
 	if (data->layer)
 		destroy_element(IMAGE, data, data->layer);
 	if (data->items)
@@ -108,5 +115,6 @@ int	free_data(t_data *data)
 		destroy_element(DISPLAY, data, data->mlx_ptr);
 	free(data->foe_info);
 	free_map(data->map);
+	free(data->message);
 	exit(0);
 }

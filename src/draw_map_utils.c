@@ -6,7 +6,7 @@
 /*   By: anfi <anfi@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/06 22:38:21 by anfi              #+#    #+#             */
-/*   Updated: 2024/06/11 21:44:18 by anfi             ###   ########.fr       */
+/*   Updated: 2024/06/16 20:29:32 by anfi             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,9 +61,11 @@ void	check_screen_size(t_data *data, int width, int height)
 	mlx_get_screen_size(data->mlx_ptr, &sizex, &sizey);
 	if (sizex < width || sizey < height)
 	{
-		write(1, "ERROR: Map too big for this device, "
-		"	it does not fit the screen\n", 63);
-		free_data(data);
+		write(2, "ERROR: Map too big for this device, "
+		"	it does not fit the screen\n", 64);
+		free_map(data->map);
+		destroy_element(DISPLAY, data, data->mlx_ptr);
+		exit (1);
 	}
 }
 
@@ -91,7 +93,7 @@ void	init_window(t_data *data)
 	data->layer->addr = mlx_get_data_addr(data->layer->img_ptr, &data->layer->bpp, &data->layer->line_len, &data->endian);
 	data->sprite_state = 0;
 	data->movements = 0;
-	data->message = "Movements made: 0";
+	data->message = ft_strdup("Movements made: 0");
 	data->char_state = DOWN;
 	add_imgs(data);
 }

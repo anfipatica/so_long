@@ -20,18 +20,25 @@
 # define Y 0
 # define X 1
 
-//Map validations defines:
-# define EMPTY_LINE 0
-# define DIFFERENT_LENGTHS 1
-# define INVALID_WALLS 2
-# define INVALID_CHAR 3
-# define NUMBER_EXITS 4
-# define NUMBER_STARTS 5
-# define NO_OBJECT 6
-# define WRONG_SHAPE 7
-# define NON_REACHABLE_EXIT 8
-# define NON_REACHABLE_COLLECTIBLE 9
-# define NON_REACHABLE_FOE 10
+// Map validations defines for invalid_map() inside validation_utils.c
+// Check out the error message each define has inside the function
+// for more info about them.
+# define WRONG_MAP_EXTENSION 0
+# define UNABLE_TO_OPEN 1
+# define EMPTY_LINE 2
+# define DIFFERENT_LENGTHS 3
+# define INVALID_WALLS 4
+# define INVALID_CHAR 5
+# define NO_EXIT 6
+# define TOO_MANY_EXITS 7
+# define NO_STARTING_POINT 8
+# define TOO_MANY_STARTING_POINTS 9
+# define NO_OBJECT 10
+# define WRONG_SHAPE 11
+# define NON_REACHABLE_EXIT 12
+# define NON_REACHABLE_COLLECTIBLE 13
+# define NON_REACHABLE_FOE 14
+
 
 //Types of errors when creating a window.
 # define DISPLAY 0

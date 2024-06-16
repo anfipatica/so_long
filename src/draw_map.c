@@ -28,6 +28,7 @@ void	change_collectible(t_data *data)
 void	move_character(t_data *data, int x, int y, int key)
 {
 	t_bool	move;
+	char	*temp_message;
 
 	if (key == XK_s)
 		move = move_down(data, x, y);
@@ -40,10 +41,13 @@ void	move_character(t_data *data, int x, int y, int key)
 	if (move == true)
 	{
 		data->movements++;
-		data->message = ft_strjoin("Movements made: ", ft_itoa(data->movements));
+		temp_message = ft_itoa(data->movements);
+		free(data->message);
+		data->message = ft_strjoin("Movements made: ", temp_message);
+		free(temp_message);
 		printf("movements made: %d\n", data->movements);
 		if (data->map->map[y][x] == 'E')
-			draw_tile(data, data->items->exit, y, x);
+			merge_tile(data, data->items->exit, y, x);
 		else if (data->map->map[y][x] != 'F')
 			draw_tile(data, data->items->floor, y, x);
 	}
@@ -212,7 +216,8 @@ void	draw_map(t_map *map)
 	initialize_draw(&data);
 	mlx_put_image_to_window(data.mlx_ptr, data.win_ptr, data.layer->img_ptr, 0, 0);
 	centered_text_on_screen(&data, "PRESS ANY KEY TO START", 0);
-	centered_text_on_screen(&data, "Rules: Move with WASD, get all the collectibles and reach the exit!", 20);
+	centered_text_on_screen(&data,
+		"Rules: Move with WASD, get all the collectibles and reach the exit!", 20);
 	mlx_hook(data.win_ptr, DestroyNotify, StructureNotifyMask, &free_data, &data);
 	mlx_key_hook(data.win_ptr, handle_input, &data);
 	mlx_loop(data.mlx_ptr);
