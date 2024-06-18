@@ -1,38 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   move_character.c                                   :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: anfi <anfi@student.42.fr>                  +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/06/18 22:59:34 by anfi              #+#    #+#             */
+/*   Updated: 2024/06/18 22:59:35 by anfi             ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../inc/so_long.h"
 
-int loop_hook(t_data *data)
-{
-	static int counter = 0;
-	if (counter++ > REFRESH_RATE)
-		free_data(data);
-	return 0;
-}
-
-void	check_changes(t_data *data, t_map *map, int p_y, int p_x)
-{
-	if (map->map[p_y][p_x] == 'F')
-	{
-		printf("YOU DIED!!!\n");
-		merge_tile(data, data->items->character[4], p_y, p_x);
-		mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->layer->img_ptr, 0, 0);
-		mlx_key_hook(data->win_ptr, NULL, data);
-		mlx_loop_hook(data->mlx_ptr, loop_hook, data);
-	}
-	if (map->map[p_y][p_x] == 'C')
-	{
-		map->map[p_y][p_x] = '0';
-		map->accesible_c--;
-	}
-	if (map->map[p_y][p_x] == 'E' && map->accesible_c == 0)
-	{
-		printf("YOU WON!!!\n");
-		merge_tile(data, data->items->character[0], p_y, p_x);
-		mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->layer->img_ptr, 0, 0);
-		mlx_key_hook(data->win_ptr, NULL, data);
-		mlx_loop_hook(data->mlx_ptr, loop_hook, data);
-	}
-}
-
+/** Moves the character one tile down*/
 t_bool	move_down(t_data *data, int x, int y)
 {
 	data->char_state = DOWN;
@@ -46,6 +26,7 @@ t_bool	move_down(t_data *data, int x, int y)
 	return (true);
 }
 
+/** Moves the character one tile up*/
 t_bool	move_up(t_data *data, int x, int y)
 {
 	data->char_state = UP;
@@ -59,6 +40,7 @@ t_bool	move_up(t_data *data, int x, int y)
 	return (true);
 }
 
+/** Moves the character one tile to the left*/
 t_bool	move_left(t_data *data, int x, int y)
 {
 	data->char_state = LEFT;
@@ -72,6 +54,7 @@ t_bool	move_left(t_data *data, int x, int y)
 	return (true);
 }
 
+/** Moves the character one tile to the right*/
 t_bool	move_right(t_data *data, int x, int y)
 {
 	data->char_state = RIGHT;

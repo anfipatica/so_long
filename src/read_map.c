@@ -6,7 +6,7 @@
 /*   By: anfi <anfi@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/06 23:07:11 by anfi              #+#    #+#             */
-/*   Updated: 2024/06/16 22:53:24 by anfi             ###   ########.fr       */
+/*   Updated: 2024/06/18 23:05:11 by anfi             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@ void	trim_line(t_map *map)
 	map->map_line_buf = ft_strdup(map->map_line);
 	free(map->map_line);
 	map->map_line = ft_strtrim(map->map_line_buf, "\n");
-	printf("%s\n", map->map_line);
 	free(map->map_line_buf);
 	map->map_line_buf = NULL;
 }

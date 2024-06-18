@@ -6,10 +6,9 @@
 /*   By: anfi <anfi@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/06 23:02:34 by anfi              #+#    #+#             */
-/*   Updated: 2024/06/16 23:18:23 by anfi             ###   ########.fr       */
+/*   Updated: 2024/06/18 23:02:34 by anfi             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #include "../inc/so_long.h"
 
@@ -33,4 +32,20 @@ t_map	init_map(void)
 	map.row_num = 0;
 	map.col_num = 0;
 	return (map);
+}
+
+/**
+ * A small function that is used when initializing t_data since there are
+ * are many mallocs, as a way to save lines.
+*/
+void	*calloc_or_free(t_data *data, int n, int size)
+{
+	void	*item;
+
+	item = ft_calloc(n, size);
+	if (!item)
+		free_data(data);
+	else
+		return (item);
+	return (NULL);
 }

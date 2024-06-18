@@ -6,10 +6,9 @@
 /*   By: anfi <anfi@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/16 23:12:04 by anfi              #+#    #+#             */
-/*   Updated: 2024/06/16 23:16:19 by anfi             ###   ########.fr       */
+/*   Updated: 2024/06/17 18:33:26 by anfi             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #include "../inc/so_long.h"
 
@@ -32,12 +31,12 @@ void	free_matrix_f_malloc(int **matrix, int i)
  * map char array. It will act as an "underlayer" to the char array. It's purpose
  * is to hold the paths the character can go through from the starting point.
 */
-int		**create_ff_matrix(int width, int height)
+int	**create_ff_matrix(int width, int height)
 {
 	int		i;
+	int		**matrix;
 
 	i = -1;
-	int		**matrix;
 	matrix = ft_calloc(height, sizeof(int *));
 	if (!matrix)
 		return (NULL);
@@ -50,6 +49,22 @@ int		**create_ff_matrix(int width, int height)
 	return (matrix);
 }
 
+/**
+ * A simple function that cleans the int matrix to reuse it for the foe movement.
+*/
+void	clean_ff_matrix(t_map *map)
+{
+	int	y;
+	int	x;
+
+	y = -1;
+	while (++y < map->row_num)
+	{
+		x = -1;
+		while (++x < map->col_num)
+			map->ff_map[y][x] = -1;
+	}
+}
 /*
 Here commented we have two functions that were vital while coding, but
 rather useless now that the program is done. I'll leave them here

@@ -6,7 +6,7 @@
 /*   By: anfi <anfi@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/06 22:55:37 by anfi              #+#    #+#             */
-/*   Updated: 2024/06/16 22:50:52 by anfi             ###   ########.fr       */
+/*   Updated: 2024/06/18 22:59:13 by anfi             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,9 @@ void	validate_name(char *name)
 	i = 0;
 	while (name[i])
 		i++;
-	if (ft_strncmp(&name[i - 4], ".ber", 5) != 0)
+	if (name[i - 5] == '/')
+		invalid_map(NULL, WRONG_MAP_NAME);
+	else if (ft_strncmp(&name[i - 4], ".ber", 5) != 0)
 		invalid_map(NULL, WRONG_MAP_EXTENSION);
 }
 

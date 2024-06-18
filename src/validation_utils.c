@@ -6,7 +6,7 @@
 /*   By: anfi <anfi@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/06 23:04:41 by anfi              #+#    #+#             */
-/*   Updated: 2024/06/16 23:02:53 by anfi             ###   ########.fr       */
+/*   Updated: 2024/06/18 22:57:41 by anfi             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,8 @@ void	invalid_map(t_map *map, int error)
 		write(2, "Wrong map name."
 			" The map needs to have .ber extension\n", 53);
 	}
+	else if (error == WRONG_MAP_NAME)
+		write(2, "\".ber\" is not a valid map name\n", 31);
 	else if (error == UNABLE_TO_OPEN)
 	{
 		write(2, "map could not be opened. Please make sure the map "
