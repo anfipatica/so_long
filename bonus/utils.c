@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anfi <anfi@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: ymunoz-m <ymunoz-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/06 23:02:34 by anfi              #+#    #+#             */
-/*   Updated: 2024/06/18 23:48:48 by anfi             ###   ########.fr       */
+/*   Updated: 2024/06/19 14:38:22 by ymunoz-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,8 @@ t_map	init_map(void)
 	map.map_line_buf = "";
 	map.row_num = 0;
 	map.col_num = 0;
+	map.map = NULL;
+	map.ff_map = NULL;
 	return (map);
 }
 

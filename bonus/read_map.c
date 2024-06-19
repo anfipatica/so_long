@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   read_map.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anfi <anfi@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: ymunoz-m <ymunoz-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/06 23:07:11 by anfi              #+#    #+#             */
-/*   Updated: 2024/06/18 23:48:42 by anfi             ###   ########.fr       */
+/*   Updated: 2024/06/19 15:01:30 by ymunoz-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,11 @@
 */
 void	trim_line(t_map *map)
 {
+	if (!map->map_line_buf && !map->map_line)
+	{
+		write(2, "ERROR: Empty map\n", 17);
+		exit(1);
+	}
 	map->map_line_buf = ft_strdup(map->map_line);
 	free(map->map_line);
 	map->map_line = ft_strtrim(map->map_line_buf, "\n");

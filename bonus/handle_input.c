@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   handle_input.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anfi <anfi@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: ymunoz-m <ymunoz-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/17 21:41:01 by anfi              #+#    #+#             */
-/*   Updated: 2024/06/18 23:48:29 by anfi             ###   ########.fr       */
+/*   Updated: 2024/06/19 15:09:49 by ymunoz-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,6 @@ void	check_changes(t_data *data, t_map *map, int p_y, int p_x)
 	else if (map->map[p_y][p_x] == 'E' && map->accesible_c == 0)
 	{
 		write(1, "YOU WON!\n", 9);
-		//??? FALTA AÑADIR EL SPRITE DE GANAR.
 		merge_tile(data, data->items->character[0], p_y, p_x);
 		mlx_put_image_to_window(data->mlx_ptr, data->win_ptr,
 			data->layer->img_ptr, 0, 0);
@@ -55,8 +54,6 @@ void	update_character_movement(t_data *data, int y, int x, char *movements)
 	free(data->message);
 	data->message = ft_strjoin("Movements made: ", movements);
 	free(movements);
-	write(1, data->message, ft_strlen(data->message));
-	write(1, "\n", 1);
 	if (data->map->map[y][x] == 'E')
 		merge_tile(data, data->items->exit, y, x);
 	else if (data->map->map[y][x] != 'F')

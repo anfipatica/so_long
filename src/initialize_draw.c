@@ -3,15 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   initialize_draw.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anfi <anfi@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: ymunoz-m <ymunoz-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/17 19:51:09 by anfi              #+#    #+#             */
-/*   Updated: 2024/06/19 11:13:37 by anfi             ###   ########.fr       */
+/*   Updated: 2024/06/19 15:11:16 by ymunoz-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/so_long.h"
-
 
 /**
  * The first time the game is started we will have to draw every element on

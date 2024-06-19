@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anfi <anfi@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: ymunoz-m <ymunoz-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/17 14:42:43 by ymunoz-m          #+#    #+#             */
-/*   Updated: 2024/06/18 23:48:21 by anfi             ###   ########.fr       */
+/*   Updated: 2024/06/19 15:09:28 by ymunoz-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,6 @@ char	*ft_read(int fd, char *remain)
 	if (!read_line)
 		return (NULL);
 	read_chars = 1;
-
 	while (read_chars > 0 && ft_find_end_line(read_line) == 0)
 	{
 		read_chars = read(fd, read_line, BUFFER_SIZE);
@@ -121,7 +120,7 @@ char	*get_next_line(int fd)
 	if (!line)
 		return (ft_free(&remain), NULL);
 	remain = clean_remain(remain);
-	return(line);
+	return (line);
 }
 
 /*int		main (void)

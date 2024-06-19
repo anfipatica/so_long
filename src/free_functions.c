@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free_functions.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anfi <anfi@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: ymunoz-m <ymunoz-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/06 22:47:48 by anfi              #+#    #+#             */
-/*   Updated: 2024/06/19 11:11:25 by anfi             ###   ########.fr       */
+/*   Updated: 2024/06/19 14:37:14 by ymunoz-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,15 +22,19 @@ void	free_map(t_map *map)
 	if (!map)
 		exit(2);
 	i = -1;
-	while (map->map[++i])
+	while (map->map && map->map[++i])
 		free(map->map[i]);
-	free(map->map);
-	free(map->map_line);
+	if (map->map)
+		free(map->map);
+	if (map->map_line)
+		free(map->map_line);
 	i = -1;
 	if (map->ff_map)
 	{
 		while (++i < map->row_num)
+		{
 			free(map->ff_map[i]);
+		}
 		free(map->ff_map);
 	}
 }
