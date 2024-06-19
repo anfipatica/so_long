@@ -6,7 +6,7 @@
 /*   By: anfi <anfi@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/13 13:26:26 by ymunoz-m          #+#    #+#             */
-/*   Updated: 2024/06/16 23:02:08 by anfi             ###   ########.fr       */
+/*   Updated: 2024/06/19 11:14:10 by anfi             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,6 @@ void	check_char(t_map *map, int i, int row)
 		map->c_count++;
 	else if (map->map[row][i] == 'E')
 		map->e_count++;
-	else if (map->map[row][i] == 'F')
-		map->f_count++;
 	else if (map->map[row][i] == 'P')
 	{
 		map->p_count++;

@@ -6,11 +6,11 @@
 /*   By: anfi <anfi@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/06 22:47:48 by anfi              #+#    #+#             */
-/*   Updated: 2024/06/18 23:24:35 by anfi             ###   ########.fr       */
+/*   Updated: 2024/06/18 23:48:16 by anfi             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/so_long.h"
+#include "../inc/so_long_bonus.h"
 
 /**
  * free_map() frees the elements allocated inside the t_map struct.

@@ -6,11 +6,11 @@
 /*   By: anfi <anfi@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/06 22:55:37 by anfi              #+#    #+#             */
-/*   Updated: 2024/06/18 22:59:13 by anfi             ###   ########.fr       */
+/*   Updated: 2024/06/18 23:48:37 by anfi             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/so_long.h"
+#include "../inc/so_long_bonus.h"
 
 /**
  * Validates de correct extension of the map received.

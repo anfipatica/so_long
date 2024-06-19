@@ -24,15 +24,12 @@ OBJS = $(OBJS_DIR)/main.o \
 		$(OBJS_DIR)/draw_map_utils.o \
 		$(OBJS_DIR)/move_character.o \
 		$(OBJS_DIR)/drawing_functions.o \
-		$(OBJS_DIR)/foe_movement.o \
 		$(OBJS_DIR)/free_functions.o \
 		$(OBJS_DIR)/utils.o \
 		$(OBJS_DIR)/initialize_draw.o \
-		$(OBJS_DIR)/refresh_sprites.o \
 		$(OBJS_DIR)/add_imgs.o \
 		$(OBJS_DIR)/initialize_elements.o \
-		$(OBJS_DIR)/handle_input.o \
-		$(OBJS_DIR)/foe_movement_utils.o
+		$(OBJS_DIR)/handle_input.o
 
 OBJS_BONUS = $(BONUS_OBJS_DIR)/main.o \
 			$(BONUS_OBJS_DIR)/get_next_line.o \
@@ -83,6 +80,6 @@ clean:
 	$(RM) $(BONUS_OBJS_DIR)
 
 fclean: clean
-	rm $(NAME) $(NAME_BONUS)
+	rm -f $(NAME) $(NAME_BONUS)
 
 re: fclean all

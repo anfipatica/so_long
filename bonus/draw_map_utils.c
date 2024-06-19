@@ -6,11 +6,11 @@
 /*   By: anfi <anfi@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/06 22:38:21 by anfi              #+#    #+#             */
-/*   Updated: 2024/06/18 22:23:01 by anfi             ###   ########.fr       */
+/*   Updated: 2024/06/18 23:48:01 by anfi             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/so_long.h"
+#include "../inc/so_long_bonus.h"
 
 /**
  * A small function that is used whenever the character wins or looses to freeze

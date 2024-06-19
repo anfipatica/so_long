@@ -6,11 +6,11 @@
 /*   By: anfi <anfi@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/17 21:41:32 by anfi              #+#    #+#             */
-/*   Updated: 2024/06/18 22:24:00 by anfi             ###   ########.fr       */
+/*   Updated: 2024/06/18 23:47:59 by anfi             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/so_long.h"
+#include "../inc/so_long_bonus.h"
 
 /**
  * Where we start working with X11 and minilibx.

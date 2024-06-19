@@ -6,11 +6,11 @@
 /*   By: anfi <anfi@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 19:55:04 by anfi              #+#    #+#             */
-/*   Updated: 2024/06/17 18:45:34 by anfi             ###   ########.fr       */
+/*   Updated: 2024/06/18 23:48:08 by anfi             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/so_long.h"
+#include "../inc/so_long_bonus.h"
 
 /**
  * Checks if a tile is walkable or not.

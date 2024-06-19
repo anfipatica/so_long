@@ -6,11 +6,11 @@
 /*   By: anfi <anfi@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/18 22:24:58 by anfi              #+#    #+#             */
-/*   Updated: 2024/06/18 22:28:33 by anfi             ###   ########.fr       */
+/*   Updated: 2024/06/18 23:48:04 by anfi             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/so_long.h"
+#include "../inc/so_long_bonus.h"
 
 /**
  * put_pixel_img colours the x,y position pixel with whatever color

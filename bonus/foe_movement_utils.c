@@ -6,11 +6,11 @@
 /*   By: anfi <anfi@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/18 21:10:20 by anfi              #+#    #+#             */
-/*   Updated: 2024/06/18 22:00:53 by anfi             ###   ########.fr       */
+/*   Updated: 2024/06/18 23:48:12 by anfi             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/so_long.h"
+#include "../inc/so_long_bonus.h"
 
 void	register_foes(t_data *data, int y, int x)
 {

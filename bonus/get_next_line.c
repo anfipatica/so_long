@@ -6,11 +6,11 @@
 /*   By: anfi <anfi@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/17 14:42:43 by ymunoz-m          #+#    #+#             */
-/*   Updated: 2024/05/06 22:46:32 by anfi             ###   ########.fr       */
+/*   Updated: 2024/06/18 23:48:21 by anfi             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/so_long.h"
+#include "../inc/so_long_bonus.h"
 
 char	*gnl_strnjoin(char *s1, char *s2, int n)
 {

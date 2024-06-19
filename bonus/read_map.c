@@ -6,11 +6,11 @@
 /*   By: anfi <anfi@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/06 23:07:11 by anfi              #+#    #+#             */
-/*   Updated: 2024/06/18 23:05:11 by anfi             ###   ########.fr       */
+/*   Updated: 2024/06/18 23:48:42 by anfi             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/so_long.h"
+#include "../inc/so_long_bonus.h"
 
 /**
  * Trims the line to make sure there is no new line before or after.

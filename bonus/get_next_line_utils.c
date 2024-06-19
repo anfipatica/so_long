@@ -6,11 +6,11 @@
 /*   By: anfi <anfi@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/15 17:15:33 by ymunoz-m          #+#    #+#             */
-/*   Updated: 2024/05/06 21:22:53 by anfi             ###   ########.fr       */
+/*   Updated: 2024/06/18 23:48:19 by anfi             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/so_long.h"
+#include "../inc/so_long_bonus.h"
 
 void	ft_free(char **str)
 {

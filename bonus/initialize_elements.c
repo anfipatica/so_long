@@ -6,11 +6,11 @@
 /*   By: anfi <anfi@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/17 21:25:41 by anfi              #+#    #+#             */
-/*   Updated: 2024/06/18 22:04:18 by anfi             ###   ########.fr       */
+/*   Updated: 2024/06/18 23:48:33 by anfi             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/so_long.h"
+#include "../inc/so_long_bonus.h"
 
 /**
  * It allocates memory for every t_item inside t_data.

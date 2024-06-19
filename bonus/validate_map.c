@@ -6,11 +6,11 @@
 /*   By: anfi <anfi@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/13 13:26:26 by ymunoz-m          #+#    #+#             */
-/*   Updated: 2024/06/16 23:02:08 by anfi             ###   ########.fr       */
+/*   Updated: 2024/06/18 23:48:50 by anfi             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/so_long.h"
+#include "../inc/so_long_bonus.h"
 
 /**
  * After the flood_fill algorithm has been applied, it checks that the cell on

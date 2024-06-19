@@ -6,11 +6,11 @@
 /*   By: anfi <anfi@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/18 22:59:34 by anfi              #+#    #+#             */
-/*   Updated: 2024/06/18 22:59:35 by anfi             ###   ########.fr       */
+/*   Updated: 2024/06/18 23:48:40 by anfi             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/so_long.h"
+#include "../inc/so_long_bonus.h"
 
 /** Moves the character one tile down*/
 t_bool	move_down(t_data *data, int x, int y)

@@ -6,11 +6,11 @@
 /*   By: anfi <anfi@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/17 21:41:01 by anfi              #+#    #+#             */
-/*   Updated: 2024/06/18 22:45:28 by anfi             ###   ########.fr       */
+/*   Updated: 2024/06/18 23:48:29 by anfi             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/so_long.h"
+#include "../inc/so_long_bonus.h"
 
 /**
  * After every character or foe movement this function is called to check

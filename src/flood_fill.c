@@ -6,7 +6,7 @@
 /*   By: anfi <anfi@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 19:55:04 by anfi              #+#    #+#             */
-/*   Updated: 2024/06/17 18:45:34 by anfi             ###   ########.fr       */
+/*   Updated: 2024/06/19 11:21:48 by anfi             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,7 @@
 */
 int	check_tile(t_map *map, int y, int x)
 {
-	if (map->map[y][x] != '1' && map->map[y][x] != 'F'
-		&& map->ff_map[y][x] == 0)
+	if (map->map[y][x] != '1' && map->ff_map[y][x] == 0)
 	{
 		return (1);
 	}
@@ -74,8 +73,6 @@ void	flood_fill(t_map *map, int y, int x, int i)
 		map->accesible_c++;
 	if (map->map[y][x] == 'E')
 		map->accesible_e++;
-	if (map->map[y][x] == 'F')
-		map->accesible_f++;
 	tiles[0] = check_tile(map, y - 1, x);
 	tiles[1] = check_tile(map, y + 1, x);
 	tiles[2] = check_tile(map, y, x - 1);

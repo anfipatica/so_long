@@ -6,11 +6,11 @@
 /*   By: anfi <anfi@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/17 21:12:22 by anfi              #+#    #+#             */
-/*   Updated: 2024/06/18 23:25:08 by anfi             ###   ########.fr       */
+/*   Updated: 2024/06/18 23:47:56 by anfi             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/so_long.h"
+#include "../inc/so_long_bonus.h"
 
 /**
  * A short function that turns an xpm file into an image pointer, handles

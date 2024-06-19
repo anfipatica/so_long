@@ -6,7 +6,7 @@
 /*   By: anfi <anfi@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/06 23:02:34 by anfi              #+#    #+#             */
-/*   Updated: 2024/06/18 23:02:34 by anfi             ###   ########.fr       */
+/*   Updated: 2024/06/19 11:16:29 by anfi             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,8 @@ t_map	init_map(void)
 
 	map.c_count = 0;
 	map.e_count = 0;
-	map.f_count = 0;
 	map.accesible_c = 0;
 	map.accesible_e = 0;
-	map.accesible_f = 0;
 	map.p_count = 0;
 	map.map_fd = 0;
 	map.map_line = NULL;

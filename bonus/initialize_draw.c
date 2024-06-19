@@ -6,11 +6,11 @@
 /*   By: anfi <anfi@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/17 19:51:09 by anfi              #+#    #+#             */
-/*   Updated: 2024/06/18 21:59:29 by anfi             ###   ########.fr       */
+/*   Updated: 2024/06/18 23:48:31 by anfi             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/so_long.h"
+#include "../inc/so_long_bonus.h"
 
 /**
  * two out of two functions to draw the walls. There are 17 possible wall

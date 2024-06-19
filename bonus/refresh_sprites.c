@@ -6,11 +6,11 @@
 /*   By: anfi <anfi@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/17 20:18:26 by anfi              #+#    #+#             */
-/*   Updated: 2024/06/18 23:01:29 by anfi             ###   ########.fr       */
+/*   Updated: 2024/06/18 23:48:45 by anfi             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/so_long.h"
+#include "../inc/so_long_bonus.h"
 
 /**
  * This function updates the map sprites after the foe movements.

@@ -6,7 +6,7 @@
 /*   By: anfi <anfi@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/18 21:16:39 by anfi              #+#    #+#             */
-/*   Updated: 2024/06/18 23:27:25 by anfi             ###   ########.fr       */
+/*   Updated: 2024/06/19 11:13:47 by anfi             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,6 @@
 // Recomended REFRESH_RATE: 20000;
 # define TILE_PIXEL 64
 # define BUFFER_SIZE 30
-# define REFRESH_RATE 20000
 
 //coordinates, for an easier readibility.
 # define Y 0
@@ -87,10 +86,8 @@ typedef struct s_map
 	int		c_count;
 	int		e_count;
 	int		p_count;
-	int		f_count;
 	int		accesible_c;
 	int		accesible_e;
-	int		accesible_f;
 	int		map_fd;
 	char	*map_line;
 	char	*map_line_buf;
@@ -125,25 +122,14 @@ typedef struct s_img
 	int		line_len;
 }				t_img;
 
-/**
- * A super small struct. It repressents one foe and holds
- * the direction in which that foe is moving.
-*/
-typedef struct s_foe
-{
-	int	dir;
-}				t_foe;
-
 /** A struct to hold the sprites each item needs.*/
 typedef struct s_item
 {
 	t_img	*floor;
-	t_img	*wall[17];
-	t_img	*collectible[2];
-	t_img	*character[10];
-	t_img	*foe[2];
+	t_img	*wall;
+	t_img	*collectible;
+	t_img	*character;
 	t_img	*exit;
-	t_img	*text[3];
 }				t_item;
 
 
@@ -169,10 +155,8 @@ typedef struct s_data
 	t_item	*items;
 	t_img	*layer;
 	int		movements;
-	int		sprite_state;
 	char	*message;
 	int		char_state;
-	t_foe	*foe_info;
 }				t_data;
 
 
@@ -253,7 +237,7 @@ void	draw_map(t_map *map);
 
 void	draw_wall_continuation(t_data *data, int y, int x, char **map);
 void	draw_wall(t_data *data, int y, int x);
-void	initialize_draw(t_data *data, int i);
+void	initialize_draw(t_data *data);
 
 /** refresh_sprites.c
  * Functions to refresh the sprites when the refresh time is reached.*/
@@ -332,7 +316,7 @@ int		check_if_foe_can_move(t_data *data, int y, int x);
 
 void	free_map(t_map *map);
 void	destroy_element(int type, t_data *data, void *element);
-void	free_items(t_data *data, int i);
+void	free_items(t_data *data);
 int		free_data(t_data *data);
 
 #endif

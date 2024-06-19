@@ -6,7 +6,7 @@
 /*   By: anfi <anfi@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/17 21:41:01 by anfi              #+#    #+#             */
-/*   Updated: 2024/06/18 22:45:28 by anfi             ###   ########.fr       */
+/*   Updated: 2024/06/19 11:08:18 by anfi             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	check_changes(t_data *data, t_map *map, int p_y, int p_x)
 	if (map->map[p_y][p_x] == 'F')
 	{
 		write(1, "YOU DIED!\n", 10);
-		merge_tile(data, data->items->character[4], p_y, p_x);
+		merge_tile(data, data->items->character, p_y, p_x);
 		mlx_put_image_to_window(data->mlx_ptr, data->win_ptr,
 			data->layer->img_ptr, 0, 0);
 		mlx_key_hook(data->win_ptr, NULL, data);
@@ -35,8 +35,7 @@ void	check_changes(t_data *data, t_map *map, int p_y, int p_x)
 	else if (map->map[p_y][p_x] == 'E' && map->accesible_c == 0)
 	{
 		write(1, "YOU WON!\n", 9);
-		//??? FALTA AÑADIR EL SPRITE DE GANAR.
-		merge_tile(data, data->items->character[0], p_y, p_x);
+		merge_tile(data, data->items->character, p_y, p_x);
 		mlx_put_image_to_window(data->mlx_ptr, data->win_ptr,
 			data->layer->img_ptr, 0, 0);
 		mlx_key_hook(data->win_ptr, NULL, data);
@@ -85,8 +84,6 @@ void	update_character(t_data *data, int x, int y, int key)
 		update_character_movement(data, y, x, ft_itoa(data->movements));
 	mlx_put_image_to_window(data->mlx_ptr, data->win_ptr,
 		data->layer->img_ptr, 0, 0);
-	mlx_string_put(data->mlx_ptr, data->win_ptr, 30, 30,
-		(unsigned int)0xAFBED6, data->message);
 }
 
 /**
@@ -101,23 +98,11 @@ int	handle_input(int keysym, t_data *data)
 {
 	int			p_x;
 	int			p_y;
-	static int	i;
 
 	p_x = data->map->p_pos[X];
 	p_y = data->map->p_pos[Y];
 	if (keysym == XK_Escape)
 		free_data(data);
-	if (i == 0 && keysym != XK_Return)
-		++i;
-	else if (i++ == 1)
-	{
-		initialize_draw(data, 1);
-		mlx_put_image_to_window(data->mlx_ptr, data->win_ptr,
-			data->layer->img_ptr, 0, 0);
-		mlx_string_put(data->mlx_ptr, data->win_ptr, 30, 30,
-			(unsigned int)0xAFBED6, data->message);
-		mlx_loop_hook(data->mlx_ptr, refresh_sprites, data);
-	}
 	else if (keysym == XK_w || keysym == XK_s || keysym == XK_a
 		|| keysym == XK_d)
 		update_character(data, p_x, p_y, keysym);

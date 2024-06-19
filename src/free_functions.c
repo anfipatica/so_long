@@ -6,7 +6,7 @@
 /*   By: anfi <anfi@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/06 22:47:48 by anfi              #+#    #+#             */
-/*   Updated: 2024/06/18 23:24:35 by anfi             ###   ########.fr       */
+/*   Updated: 2024/06/19 11:11:25 by anfi             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,26 +64,13 @@ void	destroy_element(int type, t_data *data, void *element)
  * A continuation to free_data(). It frees everything inside de t_item
  * struct that belongs to t_data.
 */
-void	free_items(t_data *data, int i)
+void	free_items(t_data *data)
 {
-	if (data->items && data->items->floor->img_ptr)
-		destroy_element(IMAGE, data, data->items->floor);
-	while (++i < 17 && data->items)
-		destroy_element(IMAGE, data, data->items->wall[i]);
-	i = -1;
-	while (++i < 10 && data->items)
-		destroy_element(IMAGE, data, data->items->character[i]);
-	i = -1;
-	while (++i < 2 && data->items)
-	{
-		destroy_element(IMAGE, data, data->items->collectible[i]);
-		destroy_element(IMAGE, data, data->items->foe[i]);
-	}
-	i = -1;
-	while (++i < 3)
-		destroy_element(IMAGE, data, data->items->text[i]);
-	if (data->items)
-		destroy_element(IMAGE, data, data->items->exit);
+	destroy_element(IMAGE, data, data->items->floor);
+	destroy_element(IMAGE, data, data->items->wall);
+	destroy_element(IMAGE, data, data->items->character);
+	destroy_element(IMAGE, data, data->items->collectible);
+	destroy_element(IMAGE, data, data->items->exit);
 }
 
 /**
@@ -94,7 +81,7 @@ void	free_items(t_data *data, int i)
 */
 int	free_data(t_data *data)
 {
-	free_items(data, -1);
+	free_items(data);
 	if (data->layer)
 		destroy_element(IMAGE, data, data->layer);
 	if (data->items)
@@ -103,7 +90,6 @@ int	free_data(t_data *data)
 		destroy_element(WINDOW, data, data->win_ptr);
 	if (data->mlx_ptr)
 		destroy_element(DISPLAY, data, data->mlx_ptr);
-	free(data->foe_info);
 	free_map(data->map);
 	free(data->message);
 	exit (0);

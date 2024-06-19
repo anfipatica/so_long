@@ -6,11 +6,11 @@
 /*   By: anfi <anfi@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/06 23:02:34 by anfi              #+#    #+#             */
-/*   Updated: 2024/06/18 23:02:34 by anfi             ###   ########.fr       */
+/*   Updated: 2024/06/18 23:48:48 by anfi             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/so_long.h"
+#include "../inc/so_long_bonus.h"
 
 /**
  * We inicialize every element inside the t_map struct.

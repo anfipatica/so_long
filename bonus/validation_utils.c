@@ -6,11 +6,11 @@
 /*   By: anfi <anfi@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/06 23:04:41 by anfi              #+#    #+#             */
-/*   Updated: 2024/06/18 22:57:41 by anfi             ###   ########.fr       */
+/*   Updated: 2024/06/18 23:48:52 by anfi             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/so_long.h"
+#include "../inc/so_long_bonus.h"
 
 /**
  * The continuation of invalid_map(). You know, to keep everything under 25 lines

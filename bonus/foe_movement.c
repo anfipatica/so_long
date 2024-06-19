@@ -6,11 +6,11 @@
 /*   By: anfi <anfi@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 13:09:31 by ymunoz-m          #+#    #+#             */
-/*   Updated: 2024/06/18 22:33:11 by anfi             ###   ########.fr       */
+/*   Updated: 2024/06/18 23:48:14 by anfi             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/so_long.h"
+#include "../inc/so_long_bonus.h"
 
 /**
  * A function to check if n foe has any movement path or must remain still.*/
