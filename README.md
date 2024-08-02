@@ -10,11 +10,16 @@ En este README sólo pondré el resultado del juego, a continuación adjunto [mi
 por si alguien quiere mirarlos y tener un mayor entendimiento del programa y su creación.
 
 <br>
-## Clips del bonus
-<img width="800" alt="bonus clip 1, zoomed" src="https://media.giphy.com/media/OfswESe6rdhSHHfXwd/giphy.gif">
-<img width="800" alt="bonus clip 2" src="https://media.giphy.com/media/uTqMtzW4nVZckzuUj6/giphy.gif">
 
-<img width="600" alt="non bonus clip" src="https://media.giphy.com/media/6UYH5gkm3Ezp3RidV7/giphy.gif">
+## Clips del bonus
+
+<img width="700" alt="bonus clip 1, zoomed" src="https://media.giphy.com/media/OfswESe6rdhSHHfXwd/giphy.gif">
+<br>
+<img width="700" alt="bonus clip 2" src="https://media.giphy.com/media/uTqMtzW4nVZckzuUj6/giphy.gif">
+
+## Clips del juego base
+
+<img width="700" alt="non bonus clip" src="https://media.giphy.com/media/6UYH5gkm3Ezp3RidV7/giphy.gif">
 
 
 
