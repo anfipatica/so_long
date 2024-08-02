@@ -9,4 +9,15 @@ Este proyecto consiste en crear un pequeño y sencillo juego 2D.
 En este README sólo pondré el resultado del juego, a continuación adjunto [mis apuntes en notion](https://www.notion.so/SO-LONG-90b8e0195b49431e8a672b1240d933aa?pvs=4)
 por si alguien quiere mirarlos y tener un mayor entendimiento del programa y su creación.
 
-<img width="600" alt="calculator gif" src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExazVvNXNvZ200M2wzN2lxOTE5OGp6aDloYXRiYnZreTYxeGF0enRlbiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/6UYH5gkm3Ezp3RidV7/giphy.gif">
+<br>
+## Clips del bonus
+<img width="800" alt="bonus clip 1, zoomed" src="https://media.giphy.com/media/OfswESe6rdhSHHfXwd/giphy.gif">
+<img width="800" alt="bonus clip 2" src="https://media.giphy.com/media/uTqMtzW4nVZckzuUj6/giphy.gif">
+
+<img width="600" alt="non bonus clip" src="https://media.giphy.com/media/6UYH5gkm3Ezp3RidV7/giphy.gif">
+
+
+
+
+
+
