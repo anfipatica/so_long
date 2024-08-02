@@ -6,7 +6,9 @@ Este proyecto consiste en crear un pequeño y sencillo juego 2D.
 
 
 <br>
-En este README sólo pondré el resultado del juego, a continuación adjunto [mis apuntes en notion](https://www.notion.so/SO-LONG-90b8e0195b49431e8a672b1240d933aa?pvs=4)
+En este README sólo pondré el resultado del juego, a continuación adjunto
+
+[mis apuntes en notion](https://www.notion.so/SO-LONG-90b8e0195b49431e8a672b1240d933aa?pvs=4)
 por si alguien quiere mirarlos y tener un mayor entendimiento del programa y su creación.
 
 <br>
