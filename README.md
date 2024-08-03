@@ -5,6 +5,7 @@ Este proyecto consiste en crear un pequeño y sencillo juego 2D.
 - Tienes un punto de partida, un punto de salida y coleccionables para desbloquear la salida. Lo demás es cosa tuya.
 
 <br>
+<img width="800" alt="bonus detail clip" src="https://media.giphy.com/media/uf2GYmN1aTcPMJ2Vnm/giphy.gif">
 Realicé una serie de bonus con los que conseguí el 125%. Esos bonus incluyen:
 
 -  Pequeña animación del personaje y los coleccionable.
