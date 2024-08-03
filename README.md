@@ -8,7 +8,7 @@ Este proyecto consiste en crear un pequeño y sencillo juego 2D.
 <img width="800" alt="bonus detail clip" src="https://media.giphy.com/media/uf2GYmN1aTcPMJ2Vnm/giphy.gif">
 Realicé una serie de bonus con los que conseguí el 125%. Esos bonus incluyen:
 
--  Pequeña animación del personaje y los coleccionable.
+-  [x] Pequeña animación del personaje y los coleccionable.
 -  Mostrar por pantalla el número de movimientos.
 -  Añadir una cartela informativa del funcionamiento e *historia*.
 -  Añadir cartela cuando el jugador gana o pierde.
