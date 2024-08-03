@@ -14,7 +14,7 @@ Realicé una serie de bonus con los que conseguí el 125%. Esos bonus incluyen:
 > -  [x] Añadir una cartela informativa del funcionamiento e *historia*.
 > -  [x] Añadir cartela cuando el jugador gana o pierde.
 > -  [x] Mayor complejidad gráfica de los muros: Muro interconectado en vez de un único sprite repetido.
-> -    Esto implicó la creación de 17 sprites única y exclusivamente para los muros, y aún podrían añadirse unos cuantos más para mejor resultado en ciertos casos.
+>    -    Esto implicó la creación de 17 sprites única y exclusivamente para los muros, y aún podrían añadirse unos cuantos más para mejor resultado en ciertos casos.
 > - [x] Lo más importante: Adición de enemigos con movimiento.
 
 En este README sólo pondré el resultado del juego y algún comentario de cosas que me gustaría destacar, a continuación adjunto
@@ -63,8 +63,8 @@ Tras mucho rebanarme la cabeza, opté por este planteamiento:
 - Primero se establece el movimiento de cada enemigo. En este momento hay 4 opciones:
   1. Si el enemigo o bloque de enemigos se encuentran entre bloques permanentes (muros o la salida), establecen su movimiento a **permanentemente estáticos**, nunca podrán moverse.
   2. Si el enemigo o bloque de enemigos se encuentran entre uno o más bloques no permanentes (los coleccionables), se mantendrán como **estáticos** hasta que el bloque no permanente desaparezca (cojas el coleccionable), creando espacio para moverse.
-3.   Si el enemigo tiene su derecha despejada, siempre empezará el movimiento **a su derecha**.
-4.   Si la derecha no está despejada, empezará el movimiento **a su izquierda**
+  3.   Si el enemigo tiene su derecha despejada, siempre empezará el movimiento **a su derecha**.
+  4.   Si la derecha no está despejada, empezará el movimiento **a su izquierda**
 
 - La prioridad de movimiento es por orden de lectura de la matriz, es decir, de arriba a abajo, de derecha a izquierda.
 - De producirse colisión, el enemigo emplea un turno de movimiento en cambiar su dirección, turno en que está estático.
