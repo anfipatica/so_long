@@ -8,13 +8,13 @@ Este proyecto consiste en crear un pequeño y sencillo juego 2D.
 <img width="800" alt="bonus detail clip" src="https://media.giphy.com/media/uf2GYmN1aTcPMJ2Vnm/giphy.gif">
 Realicé una serie de bonus con los que conseguí el 125%. Esos bonus incluyen:
 
--  [x] Pequeña animación del personaje y los coleccionable.
--  Mostrar por pantalla el número de movimientos.
--  Añadir una cartela informativa del funcionamiento e *historia*.
--  Añadir cartela cuando el jugador gana o pierde.
--  Mayor complejidad gráfica de los muros: Muro interconectado en vez de un único sprite repetido.
--    Esto implicó la creación de 17 sprites única y exclusivamente para los muros, y aún podrían añadirse unos cuantos más para mejor resultado en ciertos casos.
-- Lo más importante: Adición de enemigos con movimiento.
+> -  [x] Pequeña animación del personaje y los coleccionable.
+> -  [x] Mostrar por pantalla el número de movimientos.
+> -  [x] Añadir una cartela informativa del funcionamiento e *historia*.
+> -  [x] Añadir cartela cuando el jugador gana o pierde.
+> -  [x] Mayor complejidad gráfica de los muros: Muro interconectado en vez de un único sprite repetido.
+> -    Esto implicó la creación de 17 sprites única y exclusivamente para los muros, y aún podrían añadirse unos cuantos más para mejor resultado en ciertos casos.
+> - [x] Lo más importante: Adición de enemigos con movimiento.
 
 En este README sólo pondré el resultado del juego y algún comentario de cosas que me gustaría destacar, a continuación adjunto
 
