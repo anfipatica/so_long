@@ -42,6 +42,17 @@ Muy resumidamente: Conocemos el tamaño que tienen las imágenes. Leemos cada pi
 
 Si no se detecta color ya que ese pixel concreto es transparente, realizamos el mismo proceso pero con la imagen de debajo, el suelo.
 
+## Movimiento de los enemigos
+La mayoría de este proyecto lo realicé en casa, por lo que no contrasté las ideas con los compañeros tanto como me habría gustado. Sabía que una parte del bonus era añadir enemigos, y para mí era obvio que los enemigos se debían mover, así que eso empecé a implementar. Luego descubrí que la mayoría de la gente hacía enemigos estáticos, pero ya llevaba más de un día implementando (fallidamente) el movimiento.
+Y es que lo difícil no es el movimiento como tal, hacer que un enemigo se mueva es fácil, lo difícil es lidiar con **las colisiones entre enemigos**.
+Tras mucho rebanarme la cabeza, opté por este planteamiento:
+- Los enemigos sólo se moverían de izquierda a derecha, en una misma dirección hasta colisionar.
+- Primero se establece el movimiento de cada enemigo. En este momento hay 4 opciones:
+1.   Si el enemigo o bloque de enemigos se encuentran entre bloques permanentes (muros o la salida), establecen su movimiento a **permanentemente estáticos**, nunca podrán moverse.
+2.   Si el enemigo o bloque de enemigos se encuentran entre uno o más bloques no permanentes (los coleccionables), se mantendrán como **estáticos** hasta que el bloque no permanente desaparezca (cojas el coleccionable), creando espacio para moverse.
+3.   Si el enemigo tiene su derecha despejada, siempre empezará el movimiento **a su derecha**.
+4.   Si la derecha no está despejada, empezará el movimiento **a su izquierda**
+- La prioridad de movimiento es por orden de lectura de la matriz, es decir, de arriba a abajo, de derecha a izquierda.
+- De producirse colisión, el enemigo emplea un turno de movimiento en cambiar su dirección, turno en que está estático.
 
-
-
+<img width="700" alt="foe movement clip" src="https://media.giphy.com/media/DXnQhYGb8K8PABGe6i/giphy.gif">
