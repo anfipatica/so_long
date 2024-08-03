@@ -70,3 +70,8 @@ Tras mucho rebanarme la cabeza, opté por este planteamiento:
 - De producirse colisión, el enemigo emplea un turno de movimiento en cambiar su dirección, turno en que está estático.
 
 <img width="700" alt="foe movement clip" src="https://media.giphy.com/media/DXnQhYGb8K8PABGe6i/giphy.gif">
+
+## Pathologic.
+Para terminar, sólo quiero decir que el proyecto es mi pequeño homenaje al videojuego Pathologic 2, donde eres un médico que tiene 12 días para intentar salvar tu pueblo natal de una plaga que va a asolar todo. En este juego recoges hierbas especiales y mezclándolas con órganos infectados puedes obtener medicinas y lo más importante, la Panacea.
+
+En mi versión sólo tienes que recoger hierbitas y huir de las nubes de plaga, así que es mucho más sencillo. Finalmente me despido, ¡Adiós!
